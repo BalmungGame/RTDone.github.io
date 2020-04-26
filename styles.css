@@ -1,0 +1,340 @@
+body {
+	min-width: 570px !important;
+}
+#load[data-show="1"] > section,
+#load[data-show="1"] > div > section {
+	display: inherit;
+}
+#load[data-show="1"] #loading,
+#load[data-show="1"] #loadingnote {
+	display: none;
+}
+
+@media (min-width: 720px) { 
+	#maincontent {
+		height: inherit;
+	}
+	#maincontent > section {
+		height: inherit;
+		overflow-y: inherit;
+	}
+}
+@media (min-width: 990px) { 
+	#maincontent {
+		height: calc(100vh - 310px);
+	}
+
+	#maincontent > section {
+		height: 100%;
+		overflow-y: scroll;
+	}
+}
+
+@media (min-width: 1200px) { 
+	#maincontent {
+		height: calc(100vh - 200px);
+	}
+}
+
+.clickable {
+	cursor: pointer;
+	margin-bottom: -1px;
+	z-index: 2;
+}
+
+#equiplistnav[data-equiplist="0"] #showstats,
+#equiplistnav[data-equiplist="1"] #showequips {
+	border: 1px solid rgba(223,223,223);
+	border-top-left-radius: .25rem;
+	border-top-right-radius: .25rem;
+	font-weight: bold;
+}
+
+#stats-section {
+	margin-right: 0;
+}
+#sets-container,
+#setup-sets,
+#equip-container,
+#equip-itemset-list {
+	width: 100%;
+	margin-left: 0px;
+	padding-right: 0;
+}
+
+#equiplist-section> div {
+	display: none;
+}
+#equiplist-section[data-equiplist="1"] #equip-container {
+	display: inherit;
+}
+#equiplist-section[data-equiplist="0"] #setup-stats-container {
+	display: inherit;
+}
+
+
+#equip-container {
+	padding-left: 0;
+}
+
+i.stat,
+data {
+	font-style: normal;
+	color: #2ECC71
+}
+i.sstat,
+data.sstat {
+	font-style: normal;
+	color: #1ABC9C
+}
+i.ssstat,
+data.ssstat {
+	font-style: normal;
+	color: #9B59B6
+}
+i.rstat,
+data.rstat {
+	font-style: normal;
+	color: cyan
+}
+/*debuffs*/
+i.dstat,
+data.dstat {
+	font-style: normal;
+	color: red
+}
+
+.list-group-flush li {
+	border: none;
+}
+
+
+.setup-item li {
+	width: 90px;
+	height: 90px;
+	background-color: #222222;
+	cursor: pointer;
+}
+
+.setup-w {
+	background-image: url("img/default/weapon.png");
+}
+.setup-o {
+	background-image: url("img/default/offhand.png");
+}
+.setup-h {
+	background-image: url("img/default/helmet.png");
+}
+.setup-c {
+	background-image: url("img/default/chestpiece.png");
+}
+.setup-f {
+	background-image: url("img/default/footgear.png");
+}
+.setup-r {
+	background-image: url("img/default/ring.png");
+}
+.setup-e {
+	background-image: url("img/default/earring.png");
+}
+.setup-n {
+	background-image: url("img/default/necklace.png");
+}
+.setup-b {
+	background-image: url("img/default/belt.png");
+}
+
+
+
+.setup-set-effectlist {
+	margin: 0 -5px;
+	padding-right: 0;
+}
+
+.equip-img {
+	width: 90px;
+	height: 90px;
+}
+
+.equip-img-container {
+	width: 45px;
+	height: 45px;
+	position: relative;
+}
+.equip-list-img {
+	width: 90px;
+	height: 90px;
+	transform: scale(0.5);
+	margin-top: -50%;
+	margin-left: -50%;
+}
+
+
+[data-rarity="c"] {background-image: url("img/equipment_map_common.png");}
+[data-rarity="l"] {background-image: url("img/equipment_map_legendary.png");}
+[data-rarity="h"] {background-image: url("img/equipment_map_holy.png");}
+[data-rarity="i"] {background-image: url("img/equipment_map_infernal.png");}
+[data-rarity="e"] {background-image: url("img/equipment_map_eternal.png");}
+.equip-border {
+	width: 100%;
+	height: 100%;
+	background-size: 90px 90px;
+}
+[data-rarity="c"] .equip-border {background-image: url("img/rarity/common.png");}
+[data-rarity="l"] .equip-border {background-image: url("img/rarity/legendary.png");}
+[data-rarity="h"] .equip-border {background-image: url("img/rarity/holy.png");}
+[data-rarity="i"] .equip-border {background-image: url("img/rarity/infernal.png");}
+[data-rarity="e"] .equip-border {background-image: url("img/rarity/eternal.png");}
+
+
+[data-type="w"] {background-position-x: 0;}
+[data-type="o"] {background-position-x: -90px;}
+[data-type="h"] {background-position-x: -180px;}
+[data-type="c"] {background-position-x: -270px;}
+[data-type="r1"] {background-position-x: -360px;}
+[data-type="r2"] {background-position-x: -450px;}
+[data-type="e"] {background-position-x: -540px;}
+[data-type="n"] {background-position-x: -630px;}
+[data-type="b"] {background-position-x: -720px;}
+[data-type="f"] {background-position-x: -810px;}
+
+[data-offset="0"] {background-position-y: 0;}
+[data-offset="1"] {background-position-y: -90px;}
+[data-offset="2"] {background-position-y: -180px;}
+[data-offset="3"] {background-position-y: -270px;}
+[data-offset="4"] {background-position-y: -360px;}
+[data-offset="5"] {background-position-y: -450px;}
+[data-offset="6"] {background-position-y: -540px;}
+[data-offset="7"] {background-position-y: -630px;}
+[data-offset="8"] {background-position-y: -720px;}
+[data-offset="9"] {background-position-y: -810px;}
+[data-offset="10"] {background-position-y: -900px;}
+[data-offset="11"] {background-position-y: -990px;}
+[data-offset="12"] {background-position-y: -1080px;}
+[data-offset="13"] {background-position-y: -1170px;}
+[data-offset="14"] {background-position-y: -1260px;}
+[data-offset="15"] {background-position-y: -1350px;}
+[data-offset="16"] {background-position-y: -1440px;}
+[data-offset="17"] {background-position-y: -1530px;}
+[data-offset="18"] {background-position-y: -1620px;}
+
+.equip-info {
+	width: calc(100% - 50px)
+}
+.equip-info ul li {
+	padding-top: 0.2em;
+}
+
+#equip-itemset-tmp {
+	display: none;
+}
+
+.equip-name {
+	margin-top: -7px;
+	font-weight: bold;
+}
+.equip-name .name {
+	padding-left: 1em
+}
+.equip-type {
+	position: absolute;
+	right: 1em;
+	padding-top: 0.6em;
+}
+.rarity{
+	position: absolute;
+	right: 1em
+}
+.rarity-c {color: inherit;}
+.rarity-l {color: #2ECC71;}
+.rarity-h {color: #F2A842;}
+.rarity-i {color: #FB4E35;}
+.rarity-e {color: #BE66FF;}
+.rarity-m {color: #FF9A3C;}
+.rarity-s {color: gray;}
+.rarity-s1 {color: gray;}
+.rarity-s2 {color: gray;}
+.rarity-s3 {color: gray;}
+.rarity-z {color: #3DB6D8;}
+
+
+
+.item-border,
+.set-border {
+	height: 0;
+	padding: 0
+}
+[data-show="0"] {
+	display: none !important;
+}
+[data-disabled="1"] {
+	text-decoration: line-through;
+}
+[data-disabled="1"] .badge {
+	background-color: gray;
+}
+
+.equip-itemset-itemlist {
+	padding-right: 0;
+}
+
+.equip-itemset-itemlist li {
+	padding-bottom: 0.1rem
+}
+.equip-itemset-itemlist .equip-item:hover {
+	background-color: rgba(0,0,0,0.1);
+	cursor: pointer;
+}
+.equip-itemset-itemlist .equip-item:hover li {
+	background-color: inherit;
+}
+
+.equip-fixed-attribute {
+	color: #FF9A3C;
+	background: none;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	line-height: 20px;
+}
+.equip-item:hover .equip-type {
+	display: none;
+}
+
+.equip-itemset-effectlist li {
+	padding-bottom: 0.5rem
+}
+
+p.effect {
+	margin-top: 0.12rem;
+	margin-bottom: 0.3rem;
+	line-height: 20px;
+}
+
+#setup-randomattributes[data-randomattributes="0"] {
+	display: none;
+}
+
+#setup-randomattributes,
+#setup-stats-list {
+	margin-bottom: 20px;
+}
+
+#setup-stat-s000,
+#setup-stat-s030,
+#setup-stat-s050,
+#setup-stat-s070,
+#setup-stat-s090,
+#setup-stat-s200 {
+	margin-top: 20px;
+}
+
+p.setup-statline {
+	margin-bottom: 0.2rem;
+}
+
+
+.stat-value {
+	position: absolute;
+	text-align:right;
+	right: 20px;
+}

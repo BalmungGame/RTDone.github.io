@@ -1,0 +1,94 @@
+=============================;
+equipment code digit
+	#####
+	RSSST
+R=	1	Common
+	2	Legendary
+	3	Holy
+	4	Infernal
+	5	Eternal
+	6	Mythic
+SSS=001	set code
+	999	set code
+T	0	Weapon
+	1	Offhand
+	2	Helmet
+	3	Chestpiece
+	4	Ring 1
+	5	Ring 2
+	6	Earrings
+	7	Necklace
+	8	Belt
+	9	Footgear
+=============================;
+set code
+	####
+	RSSS
+R=	1	Common
+	2	Legendary
+	3	Holy
+	4	Infernal
+	5	Eternal
+	6	Mythic
+SSS=001 set code
+=============================;
+const rtdstat = {	/* Attack */
+	s1: {name:"Attack Increase", unit:{"","%"}},
+	s2: {name:"Attack Multiply", unit:{"","%"}},
+	s3: {name:"Penetration Power", unit:{"","%"}},
+	s4: {name:"Penetration Cap", unit:{"+","%"}},
+	s5: {name:"Critical Rate", unit:{"","%"}},
+	s6: {name:"Critical Rate Cap", unit:{"+","%"}},
+	s7: {name:"Critical Damage", unit:{"","%"}},
+	s8: {name:"Critical Damage Multiply", unit:{"","%"}},
+	s9: {name:"Attack Speed", unit:{"",""}},
+	s10: {name:"Attack Speed Cap", unit:{"+",""}},
+	s11: {name:"Base Attack Damage Increased", unit:{"","%"}},
+	s12: {name:"Skill Cooldown Reduce", unit:{"","%"}},
+	s13: {name:"Skill Cooldown Reduce Cap", unit:{"+","%"}},
+	s14: {name:"Skill Damage Increased", unit:{"","%"}},
+	s15: {name:"Skill Damage Multiply", unit:{"","%"}},
+	s17: {name:"Extra Boss Damage", unit:{"",""}},
+	s18: {name:"Extra Boss Damage Multiply", unit:{"",""}},
+	/* Health */
+	s31: {name:"Health Increased", unit:{"","%"}},
+	s32: {name:"Health Multiply", unit:{"","%"}},
+	s33: {name:"Health Recovery On Attack", unit:{"","%"}},
+	s34: {name:"Recovery per Wave", unit:{"","%"}},
+	/* Defense */
+	s51: {name:"Defense Increased", unit:{"","%"}},
+	s52: {name:"Defense Multiply", unit:{"","%"}},
+	s53: {name:"Dodge Rate", unit:{"","%"}},
+	s54: {name:"Dodge Cap", unit:{"+","%"}},
+	s55: {name:"Shield Block Rate", unit:{"","%"}},
+	s56: {name:"Shield Damage Block", unit:{"","%"}},
+	s57: {name:"Damage Reduction", unit:{"","%"}},
+	/* Debuff */
+	s71: {name:"Burn Resistance", unit:{"","%"}},
+	s72: {name:"Freeze Resistance", unit:{"","%"}},
+	s73: {name:"Poison Resistance", unit:{"","%"}},
+	s74: {name:"Bleed Resistance", unit:{"","%"}},
+	s75: {name:"Shock Resistance", unit:{"","%"}},
+	s76: {name:"Knockback Resistance", unit:{"","%"}},
+	s77: {name:"Knock Down Resistance", unit:{"","%"}},
+	s78: {name:"Stun Resistance", unit:{"","%"}},
+	s79: {name:"Slow Resistance", unit:{"","%"}},
+	s81: {name:"Burn Rate", unit:{"","%"}},
+	s82: {name:"Freeze Rate", unit:{"","%"}},
+	s83: {name:"Poison Rate", unit:{"","%"}},
+	s84: {name:"Shock Rate", unit:{"","%"}},
+	s85: {name:"Burn Damage Bonus", unit:{"","%"}},
+	s86: {name:"Freeze Damage Bonus", unit:{"","%"}},
+	s87: {name:"Poison Damage Bonus", unit:{"","%"}},
+	s88: {name:"Shock Damage Bonus", unit:{"","%"}},
+	/* Other */
+	s91: {name:"Movement Speed", unit:{"",""}},
+	s92: {name:"Dash Distance", unit:{"",""}},
+	s93: {name:"Reduce Dash Cooldown", unit:{"","%"}},
+	s94: {name:"Companion Attack Increased", unit:{"","%"}},
+	s95: {name:"Companion Health Increased", unit:{"","%"}},
+	s96: {name:"Companion Defense Increased", unit:{"","%"}},
+	s97: {name:"EXP Obtained Increased", unit:{"","%"}},
+	s98: {name:"Gold Obtained Increased", unit:{"","%"}},
+	s99: {name:"Advanced Chest Rate Increased", unit:{"","%"}},
+	s100: {name:"2x when dismantling", unit:{"","%"}},}
