@@ -653,7 +653,11 @@ function addSetupSetElement(setKey) {
 		domdom.updateAttributeBySelector(itemSelector, "data-show", 1)
 
 		// show equipped
-		if (settings.build[equipKeyInfo.type].k !== null && settings.build[equipKeyInfo.type].k == equipKey) {
+		let equippedSlotItemKey = settings.build[equipKeyInfo.type].k
+
+		if ((equippedSlotItemKey !== null && equippedSlotItemKey == equipKey)
+			|| (settings.build.r1.k !== null && settings.build.r1.k == equipKey)
+			|| (settings.build.r2.k !== null && settings.build.r2.k == equipKey)) {
 			domdom.updateAttributeBySelector(itemSelector, "data-equipped", 1)
 		}
 
