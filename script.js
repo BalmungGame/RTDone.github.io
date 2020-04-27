@@ -114,6 +114,7 @@ const settings = {
 	notice: "",
 	showstats: 0,
 	showrand: 0,
+	elr: "0" /*equip list rarity filter*/
 }
 
 const elementTemplates = {
@@ -270,6 +271,14 @@ function initElements() {
 		settings.showstats = 0
 	}
 
+
+	// equip list color filter
+	domdom.eleByID("eif-c").onclick = function () {if (settings.elr !== "c") {settings.elr = "c"} else {settings.elr = "0"}}
+	domdom.eleByID("eif-l").onclick = function () {if (settings.elr !== "l") {settings.elr = "l"} else {settings.elr = "0"}}
+	domdom.eleByID("eif-h").onclick = function () {if (settings.elr !== "h") {settings.elr = "h"} else {settings.elr = "0"}}
+	domdom.eleByID("eif-i").onclick = function () {if (settings.elr !== "i") {settings.elr = "i"} else {settings.elr = "0"}}
+	domdom.eleByID("eif-e").onclick = function () {if (settings.elr !== "e") {settings.elr = "e"} else {settings.elr = "0"}}
+
 	// add all stats
 	for (let statKey in rtdstat) {
 		addSetupStatElement(statKey)
@@ -281,8 +290,6 @@ function initElements() {
 			addEquipItemsetElement(setKey)
 		}
 	}
-	domdom.updateAttributeByID("load", "data-show", 1)
-	
 }
 
 function addSetupStatElement(statKey) {
@@ -369,9 +376,11 @@ function updateSetupStatElement(statKey) {
 	
 	// calc special effects
 
+	console.log("hey", settings.buildset.hasOwnProperty("se015"))
 	// manticore
 	if (settings.buildset.hasOwnProperty("se015") === true
-		&& settings.buildset.se015.equips + settings.buildset.se015.effets >= 2) {
+		&& (settings.buildset.se015.equips + settings.buildset.se015.effects) >= 2) {
+		console.log(allstats.s003)
 		allstats.s009 += allstats.s003
 	}
 
@@ -397,6 +406,8 @@ function addEquipItemsetElement(setKey) {
 	let setKeyInfo = keyInfo("rtdset", setKey)
 
 	domdom.eleByID("equip-itemset-list").appendChild(newEquipItemsetElement)
+
+	domdom.updateAttributeByID(newElementID, "data-filter-rarity", setKeyInfo.rarity)
 
 	domdom.updateAttributeBySelector("#"+newElementID+" .equip-itemset-name", "id", newElementID+"-name")
 	domdom.updateAttributeBySelector("#"+newElementID+" .name", "id", newElementID+"-namename")
@@ -563,6 +574,25 @@ function addSetupSetElement(setKey) {
 	let newElementSetName = rtdset[setKey].setname[settings.lang]
 	domdom.updateTextByID(newElementID+"-namename", newElementSetName)
 
+	// add handler
+	document.getElementById(newElementID+"-name").onclick = function () {
+		settings.showstats = 0
+		if (settings.elr !== "0" && settings.elr !== setKeyInfo.rarity) {
+			settings.elr = setKeyInfo.rarity
+		}
+
+		setTimeout(function(){
+		    domdom.eleByID("equip-itemset-"+setKey).scrollIntoView({
+		      behavior: 'smooth', block: 'center'
+		    });
+
+		    domdom.eleByID("equip-itemset-"+setKey).classList.toggle('fade-it');
+		    setTimeout(function(){
+		    	domdom.eleByID("equip-itemset-"+setKey).classList.remove('fade-it');
+		    }, 2000);
+		}, 300);
+	}
+
 	// enable set effects based on setup
 	let currentMaxSet = settings.buildset[setKey].equips + settings.buildset[setKey].effects
 
@@ -601,9 +631,56 @@ function addSetupSetElement(setKey) {
 				let setEffectContainerSelector = "#"+newElementID+" div .setup-set-effectlist .set-" + seteffectcount
 				domdom.updateAttributeBySelector(setEffectContainerSelector, "data-show", 1)
 			}
-			
 		}
 	}
+
+	// set set equip items
+	for (let si_i = 0; si_i < rtdset[setKey].items.length; si_i++) {
+		let equipKey = rtdset[setKey].items[si_i]
+		let equipKeyInfo = keyInfo("rtdequip", equipKey)
+
+		let itemRarity = equipKeyInfo.rarity
+		let itemName = rtdequip[equipKey].name[settings.lang]
+		let itemPos = rtdequip[equipKey].pos
+
+		let itemSelector = "#"+newElementID+" .setup-set-equiplist .sei-"+equipKeyInfo.type
+		let itemElementID = "sei-"+equipKey
+		domdom.updateAttributeBySelector(itemSelector, "id", itemElementID)
+
+		let itemPropertySelector = "#"+itemElementID+" .equip-img-container .equip-list-img"
+
+
+		domdom.updateAttributeBySelector(itemPropertySelector, "data-rarity", itemRarity)
+		domdom.updateAttributeBySelector(itemPropertySelector, "data-offset", itemPos)
+
+		domdom.updateAttributeBySelector(itemSelector, "data-show", 1)
+
+		// show equipped
+		if (settings.build[equipKeyInfo.type].k !== null && settings.build[equipKeyInfo.type].k == equipKey) {
+			domdom.updateAttributeBySelector(itemSelector, "data-equipped", 1)
+		}
+
+		// add handler
+		document.getElementById(itemElementID).onclick = function () {
+			settings.showstats = 0
+			if (settings.elr !== "0" && settings.elr !== setKeyInfo.rarity) {
+				settings.elr = setKeyInfo.rarity
+			}
+
+			setTimeout(function(){
+			    domdom.eleByID("equip-item-"+equipKey).scrollIntoView({
+			      behavior: 'smooth', block: 'center'
+			    });
+
+			    domdom.eleByID("equip-item-"+equipKey).classList.toggle('fade-it');
+			    setTimeout(function(){
+			    	domdom.eleByID("equip-item-"+equipKey).classList.remove('fade-it');
+			    }, 2000);
+			}, 300);
+		}
+	}
+
+
 }
 
 function removeSetupRandElement() {
@@ -775,12 +852,13 @@ function calcSetupSet() {
 			let setEffects = rtdset[setid].effects
 			let currentMaxSet = settings.buildset[setid].equips + settings.buildset[setid].effects
 			for (setEffectKey in setEffects) {
+				let setEffectData = setEffects[setEffectKey]
 				let currentSetEffect = setEffectKey.slice(1,2)
 				if (currentSetEffect <= currentMaxSet) {
 					// look for more bonus on this set effect
-					// TO DO FIX: there is a issue when buying a +1/+2 first then buy Flaming Lavascale
-					for (let seb_i = 0; seb_i < setEffects[setEffectKey].length; seb_i++) {
-						let setEffect = setEffects[setEffectKey][seb_i]
+					//console.log(setEffectData)
+					for (let seb_i = 0; seb_i < setEffectData.length; seb_i++) {
+						let setEffect = setEffectData[seb_i]
 						if (["e001","e002","e003","e004","e005","e006"].indexOf(setEffect[0]) !== -1) {
 							let effectKey = setEffect[0]
 							let bonus = setEffect[1]
@@ -892,6 +970,7 @@ function initBuilder() {
 		initData()
 		initElements()
 		getUrl()
+		domdom.updateAttributeByID("load", "data-show", 1)
 	} catch(e) {
 		console.error(e)
 		alert(e)
@@ -929,12 +1008,17 @@ let gameUILoop = function () {
 		domdom.updateAttributeByID("stats-section", "data-show", 1)
 	}
 
+
 	if (settings.showstats === 1) {
 		domdom.updateAttributeByID("equiplistnav", "data-equiplist", 0)
 		domdom.updateAttributeByID("equiplist-section", "data-equiplist", 0)
 	} else {
 		domdom.updateAttributeByID("equiplistnav", "data-equiplist", 1)
 		domdom.updateAttributeByID("equiplist-section", "data-equiplist", 1)
+
+
+		domdom.updateAttributeByID("equip-itemset-filter", "data-color", settings.elr)
+		domdom.updateAttributeByID("equip-itemset-list", "data-color", settings.elr)
 	}
 
 	if (settings.showrand === 1) {

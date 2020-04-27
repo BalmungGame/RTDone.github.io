@@ -687,6 +687,64 @@ const rtdset = {
 
 const rtdequip = {
 	/*legendary*/
+	l010w: {setid: "sl010", name:{en:"Knight's Sword"}, class:1, pos:0},
+	l010o: {setid: "sl010", name:{en:"Knight's Shield"}, class:1, pos:0, effects:[["s057",20]]},
+	l010h: {setid: "sl010", name:{en:"Knightage Helmet"}, pos:0},
+	l010c: {setid: "sl010", name:{en:"Intermediate Knight Armor"}, pos:0},
+
+	l011w: {setid: "sl011", name:{en:"Longbow"}, class:2, pos:1},
+	l011o: {setid: "sl011", name:{en:"Pointer Quiver"}, class:2, pos:1},
+	l011h: {setid: "sl011", name:{en:"Striker's Headgear"}, pos:1},
+	l011c: {setid: "sl011", name:{en:"Striker's Armor"}, pos:1},
+
+	l012w: {setid: "sl012", name:{en:"Black Firearm"}, class:2, pos:2},
+	l012o: {setid: "sl012", name:{en:"Silverbullet Stash"}, class:2, pos:2},
+	l012h: {setid: "sl012", name:{en:"Conquest Helmet"}, pos:2},
+	l012c: {setid: "sl012", name:{en:"Conquest Armor"}, pos:2},
+
+	l013w: {setid: "sl013", name:{en:"Arcane Lance"}, class:3, pos:3},
+	l013o: {setid: "sl013", name:{en:"God's Protector"}, class:3, pos:3},
+	l013h: {setid: "sl013", name:{en:"God's Crown"}, pos:3},
+	l013c: {setid: "sl013", name:{en:"God's Robe"}, pos:3},
+
+	l014r1: {setid: "sl014", name:{en:"Tiamat Scale Band"}, pos:0},
+	l014r2: {setid: "sl014", name:{en:"Tiamat Bone Band"}, pos:0},
+	l014e: {setid: "sl014", name:{en:"Tiamat Scale Earrings"}, pos:0},
+	l014n: {setid: "sl014", name:{en:"Tiamat Scale Necklace"}, pos:0},
+	l014b: {setid: "sl014", name:{en:"Tiamat Scale Belt"}, pos:0},
+
+	l015r1: {setid: "sl015", name:{en:"Wyrm Ice Band"}, pos:1},
+	l015r2: {setid: "sl015", name:{en:"Wyrm Ice-Age Band"}, pos:1},
+	l015e: {setid: "sl015", name:{en:"Sirgurd's Spark Earrings"}, pos:1, effects:[["s071",0]]},
+	l015n: {setid: "sl015", name:{en:"Frog Pendant"}, pos:1},
+
+	l016w: {setid: "sl016", name:{en:"Crimson Seal"}, class:3, pos:3},
+	l016o: {setid: "sl016", name:{en:"Crimson Grimoire"}, class:3, pos:3},
+	l016h: {setid: "sl016", name:{en:"Crimson Hat"}, pos:3},
+	l016c: {setid: "sl016", name:{en:"Crimson Robe"}, pos:3},
+
+	l017w: {setid: "sl017", name:{en:"Zweihander"}, class:1, pos:0},
+	l017o: {setid: "sl017", name:{en:"Ram Shield"}, class:1, pos:0, effects:[["s057",20]]},
+	l017h: {setid: "sl017", name:{en:"Assault Helmet"}, pos:0},
+	l017c: {setid: "sl017", name:{en:"Assault Breastplate"}, pos:0},
+
+	l018w: {setid: "sl018", name:{en:"Archwing Seal"}, class:3, pos:3},
+	l018o: {setid: "sl018", name:{en:"Royal Grimoire"}, class:3, pos:3},
+	l018h: {setid: "sl018", name:{en:"Royal Hat"}, pos:3},
+	l018c: {setid: "sl018", name:{en:"Royal Robe"}, pos:3},
+
+	l019w: {setid: "sl019", name:{en:"Roman Shortsword"}, class:1, pos:0},
+	l019o: {setid: "sl019", name:{en:"Royal Defender"}, class:1, pos:0, effects:[["s057",20]]},
+	l019h: {setid: "sl019", name:{en:"Royal Helmet"}, pos:0},
+	l019c: {setid: "sl019", name:{en:"Royal Armor"}, pos:0},
+
+	l020w: {setid: "sl020", name:{en:"Garand Rift"}, class:2, pos:3},
+	l020o: {setid: "sl020", name:{en:"Obsidian Pellet Bag"}, class:2, pos:3},
+	l020h: {setid: "sl020", name:{en:"Stygian Hat"}, pos:3},
+	l020c: {setid: "sl020", name:{en:"Stygian Costume"}, pos:3},
+
+
+
 
 	/*legendary noset*/
 	l101f: {setid: "sl101", name:{en:"Rare ? Shoes"}, pos:0},
@@ -838,7 +896,7 @@ const rtdequip = {
 	i014w: {setid: "si014", name:{en:"Mystic Staff"}, class:3, pos:2},
 	i015n: {setid: "si015", name:{en:"Majin Necklace"}, pos:1},
 	i016o: {setid: "si016", name:{en:"Eye of the Phoenix"}, class:3, pos:0},
-	i017o: {setid: "si017", name:{en:"AI Zeros"}, pos:1, effects:[["s057",20]]},
+	i017o: {setid: "si017", name:{en:"AI Zeros"}, pos:2},
 	i018c: {setid: "si018", name:{en:"Caluyax's Bone Armor"}, pos:1},
 	i019h: {setid: "si019", name:{en:"Black Unicorn"}, pos:1},
 	i020o: {setid: "si020", name:{en:"Catella's Leviathan Shield"}, pos:2},

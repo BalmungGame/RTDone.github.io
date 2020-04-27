@@ -61,6 +61,101 @@ body {
 	margin-left: 0px;
 	padding-right: 0;
 }
+#equip-container {
+	height: max-content;
+}
+
+#equip-itemset-filter {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0;
+	border:1px solid rgb(223, 223, 223);
+	background-color: #ffffff;
+	z-index: 10;
+}
+.equip-itemset-filter {
+	text-align: center;
+	width: 24px;
+	margin-right: 0 !important;
+	cursor: pointer;
+	border: 1px solid #000;
+	opacity: 0.3
+}
+#eif-c {background-color: #EEEEEE;color: #EEEEEE;}
+#eif-l {background-color: #2ECC71;color: #2ECC71;}
+#eif-h {background-color: #F2A842;color: #F2A842;}
+#eif-i {background-color: #FB4E35;color: #FB4E35;}
+#eif-e {background-color: #BE66FF;color: #BE66FF;}
+#eif-m {background-color: #FF9A3C;color: #FF9A3C;}
+
+#equip-itemset-filter[data-color="0"] #eif-c,
+#equip-itemset-filter[data-color="c"] #eif-c {
+	opacity: 1;
+}
+#equip-itemset-filter[data-color="0"] #eif-l,
+#equip-itemset-filter[data-color="l"] #eif-l {
+	opacity: 1;
+}
+#equip-itemset-filter[data-color="0"] #eif-h,
+#equip-itemset-filter[data-color="h"] #eif-h {
+	opacity: 1;
+}
+#equip-itemset-filter[data-color="0"] #eif-i,
+#equip-itemset-filter[data-color="i"] #eif-i {
+	opacity: 1;
+}
+#equip-itemset-filter[data-color="0"] #eif-e,
+#equip-itemset-filter[data-color="e"] #eif-e {
+	opacity: 1;
+}
+#equip-itemset-filter[data-color="0"] #eif-m,
+#equip-itemset-filter[data-color="m"] #eif-m {
+	opacity: 1;
+}
+
+#equip-itemset-list[data-color="c"] .equip-itemset[data-filter-rarity="l"],
+#equip-itemset-list[data-color="c"] .equip-itemset[data-filter-rarity="h"],
+#equip-itemset-list[data-color="c"] .equip-itemset[data-filter-rarity="i"],
+#equip-itemset-list[data-color="c"] .equip-itemset[data-filter-rarity="e"],
+#equip-itemset-list[data-color="c"] .equip-itemset[data-filter-rarity="m"] {
+	display: none;
+}
+#equip-itemset-list[data-color="l"] .equip-itemset[data-filter-rarity="c"],
+#equip-itemset-list[data-color="l"] .equip-itemset[data-filter-rarity="h"],
+#equip-itemset-list[data-color="l"] .equip-itemset[data-filter-rarity="i"],
+#equip-itemset-list[data-color="l"] .equip-itemset[data-filter-rarity="e"],
+#equip-itemset-list[data-color="l"] .equip-itemset[data-filter-rarity="m"] {
+	display: none;
+}
+#equip-itemset-list[data-color="h"] .equip-itemset[data-filter-rarity="c"],
+#equip-itemset-list[data-color="h"] .equip-itemset[data-filter-rarity="l"],
+#equip-itemset-list[data-color="h"] .equip-itemset[data-filter-rarity="i"],
+#equip-itemset-list[data-color="h"] .equip-itemset[data-filter-rarity="e"],
+#equip-itemset-list[data-color="h"] .equip-itemset[data-filter-rarity="m"] {
+	display: none;
+}
+#equip-itemset-list[data-color="i"] .equip-itemset[data-filter-rarity="c"],
+#equip-itemset-list[data-color="i"] .equip-itemset[data-filter-rarity="l"],
+#equip-itemset-list[data-color="i"] .equip-itemset[data-filter-rarity="h"],
+#equip-itemset-list[data-color="i"] .equip-itemset[data-filter-rarity="e"],
+#equip-itemset-list[data-color="i"] .equip-itemset[data-filter-rarity="m"] {
+	display: none;
+}
+#equip-itemset-list[data-color="e"] .equip-itemset[data-filter-rarity="c"],
+#equip-itemset-list[data-color="e"] .equip-itemset[data-filter-rarity="l"],
+#equip-itemset-list[data-color="e"] .equip-itemset[data-filter-rarity="h"],
+#equip-itemset-list[data-color="e"] .equip-itemset[data-filter-rarity="i"],
+#equip-itemset-list[data-color="e"] .equip-itemset[data-filter-rarity="m"] {
+	display: none;
+}
+#equip-itemset-list[data-color="m"] .equip-itemset[data-filter-rarity="c"],
+#equip-itemset-list[data-color="m"] .equip-itemset[data-filter-rarity="l"],
+#equip-itemset-list[data-color="m"] .equip-itemset[data-filter-rarity="h"],
+#equip-itemset-list[data-color="m"] .equip-itemset[data-filter-rarity="i"],
+#equip-itemset-list[data-color="m"] .equip-itemset[data-filter-rarity="e"] {
+	display: none;
+}
+
 
 #equiplist-section> div {
 	display: none;
@@ -151,6 +246,19 @@ data.dstat {
 	padding-right: 0;
 }
 
+/*they have handlers, check addSetupSetElement()*/
+.setup-set-name,
+.setup-set-equiplist > li.list-inline-item {
+	cursor: pointer;
+}
+.setup-set-equiplist > li.list-inline-item {
+	margin-right: 0;
+}
+
+[data-equipped="0"] {
+	opacity: 0.5
+}
+
 .equip-img {
 	width: 90px;
 	height: 90px;
@@ -225,6 +333,12 @@ data.dstat {
 	padding-top: 0.2em;
 }
 
+.equip-itemset div,
+.equip-itemset ul,
+.equip-itemset li,
+.equip-itemset div {
+	background-color: initial;
+}
 #equip-itemset-tmp {
 	display: none;
 }
@@ -337,4 +451,37 @@ p.setup-statline {
 	position: absolute;
 	text-align:right;
 	right: 20px;
+}
+
+
+
+@-webkit-keyframes yellow-fade {
+  from {
+    background: #f96;
+  }
+  to {
+    background: #fff;
+  }
+}
+@-moz-keyframes yellow-fade {
+  from {
+    background: #f96;
+  }
+  to {
+    background: #fff;
+  }
+}
+@keyframes yellow-fade {
+  from {
+    background: #f96;
+  }
+  to {
+    background: #fff;
+  }
+}
+.fade-it {
+  -webkit-animation: yellow-fade 1.7s ease-in-out 0s;
+  -moz-animation: yellow-fade 1.7s ease-in-out 0s;
+  -o-animation: yellow-fade 1.7s ease-in-out 0s;
+  animation: yellow-fade 1.7s ease-in-out 0s;
 }

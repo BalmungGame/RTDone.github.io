@@ -35,7 +35,7 @@
 		<section id="setup-section" class="row col-md-12 container mx-auto">
 			<div id="setup-container" class="row">
 				<div class="col-md-12 col-xl-6">
-					<ul class=" list-inline setup-item d-flex justify-content-center">
+					<ul class="list-inline setup-item d-flex justify-content-center">
 						<li id="setup-w" class="list-inline-item setup-w"><div class="equip-img" data-rarity="0" data-type="w" data-offset="0"><div class="equip-border"></div></div></li>
 						<li id="setup-o" class="list-inline-item setup-o"><div class="equip-img" data-rarity="0" data-type="o" data-offset="0"><div class="equip-border"></div></div></li>
 						<li id="setup-h" class="list-inline-item setup-h"><div class="equip-img" data-rarity="0" data-type="h" data-offset="0"><div class="equip-border"></div></div></li>
@@ -131,6 +131,38 @@
 		  						</li>
 		  						<li class="list-group-item set-border" data-show="0">border bottom</li>
 		  				  	</ul>
+		  				  	<ul class="col-12 col-lg-12 list-inline setup-set-equiplist">
+		  				  		<li id="sei-w" class="list-inline-item sei-w" data-show="0" data-equipped="0">
+		  				  			<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="w" data-offset="0"><div class="equip-border"></div></div></div>
+		  				  		</li>
+		  				  		<li id="sei-o" class="list-inline-item sei-o" data-show="0" data-equipped="0">
+		  				  			<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="o" data-offset="0"><div class="equip-border"></div></div></div>
+		  				  		</li>
+		  				  		<li id="sei-h" class="list-inline-item sei-h" data-show="0" data-equipped="0">
+		  				  			<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="h" data-offset="0"><div class="equip-border"></div></div></div>
+		  				  		</li>
+		  				  		<li id="sei-c" class="list-inline-item sei-c" data-show="0" data-equipped="0">
+		  				  			<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="c" data-offset="0"><div class="equip-border"></div></div></div>
+		  				  		</li>
+		  				  		<li id="sei-r1" class="list-inline-item sei-r1" data-show="0" data-equipped="0">
+		  				  			<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="r1" data-offset="0"><div class="equip-border"></div></div></div>
+		  				  		</li>
+		  				  		<li id="sei-r2" class="list-inline-item sei-r2" data-show="0" data-equipped="0">
+		  				  			<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="r2" data-offset="0"><div class="equip-border"></div></div></div>
+		  				  		</li>
+		  				  		<li id="sei-e" class="list-inline-item sei-e" data-show="0" data-equipped="0">
+		  				  			<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="e" data-offset="0"><div class="equip-border"></div></div></div>
+		  				  		</li>
+		  				  		<li id="sei-n" class="list-inline-item sei-n" data-show="0" data-equipped="0">
+		  				  			<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="n" data-offset="0"><div class="equip-border"></div></div></div>
+		  				  		</li>
+		  				  		<li id="sei-b" class="list-inline-item sei-b" data-show="0" data-equipped="0">
+		  				  			<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="b" data-offset="0"><div class="equip-border"></div></div></div>
+		  				  		</li>
+		  				  		<li id="sei-f" class="list-inline-item sei-f" data-show="0" data-equipped="0">
+		  				  			<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="f" data-offset="0"><div class="equip-border"></div></div></div>
+		  				  		</li>
+		  				  	</ul>
 				  		</div>
 					</li>
 					<li id="setup-set-tmp" class="list-group-item setup-set">
@@ -142,7 +174,14 @@
 		</section>
 		<section id="equiplist-section" class="col-md-12 col-lg-8 container mx-auto" data-equiplist="1">
 			<div id="equip-container" class="row container">
-				<ul id="equip-itemset-list" class="col-12 list-group">
+				<ul id="equip-itemset-filter" class="col-12 list-inline" data-color="0">
+					<li id="eif-c" class="list-inline-item equip-itemset-filter">C</li>
+					<li id="eif-l" class="list-inline-item equip-itemset-filter">L</li>
+					<li id="eif-h" class="list-inline-item equip-itemset-filter">H</li>
+					<li id="eif-i" class="list-inline-item equip-itemset-filter">I</li>
+					<li id="eif-e" class="list-inline-item equip-itemset-filter">E</li>
+				</ul>
+				<ul id="equip-itemset-list" class="col-12 list-group" data-color="0">
 					<li id="equip-itemset-tmp" class="list-group-item equip-itemset">
 						<h4 id="equip-itemset-tmp-name" class="equip-itemset-name d-block">
 							<span class="name">%equip-itemset-name-tmp%</span><span class="rarity badge">xd</span>
