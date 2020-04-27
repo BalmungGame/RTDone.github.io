@@ -256,7 +256,7 @@ data.dstat {
 }
 
 [data-equipped="0"] {
-	opacity: 0.5
+	opacity: 0.3
 }
 
 .equip-img {

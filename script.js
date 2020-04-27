@@ -375,12 +375,9 @@ function updateSetupStatElement(statKey) {
 	}
 	
 	// calc special effects
-
-	console.log("hey", settings.buildset.hasOwnProperty("se015"))
 	// manticore
 	if (settings.buildset.hasOwnProperty("se015") === true
 		&& (settings.buildset.se015.equips + settings.buildset.se015.effects) >= 2) {
-		console.log(allstats.s003)
 		allstats.s009 += allstats.s003
 	}
 
