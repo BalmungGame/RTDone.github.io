@@ -75,7 +75,7 @@ body {
 }
 .equip-itemset-filter {
 	text-align: center;
-	width: 24px;
+	width: 25px;
 	margin-right: 0 !important;
 	cursor: pointer;
 	border: 1px solid #000;
@@ -444,6 +444,13 @@ p.effect {
 
 p.setup-statline {
 	margin-bottom: 0.2rem;
+	margin-left: -10px;
+	padding-left: 10px;
+	margin-right: -10px;
+	padding-right: 10px;
+}
+p.setup-statline:hover {
+	background-color: #f96;
 }
 
 
@@ -451,6 +458,7 @@ p.setup-statline {
 	position: absolute;
 	text-align:right;
 	right: 20px;
+	font-weight: bold;
 }
 
 
