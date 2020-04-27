@@ -460,7 +460,7 @@ p.setup-statline {
     background: #f96;
   }
   to {
-    background: #fff;
+    background: inherit;
   }
 }
 @-moz-keyframes yellow-fade {
@@ -468,7 +468,7 @@ p.setup-statline {
     background: #f96;
   }
   to {
-    background: #fff;
+    background: inherit;
   }
 }
 @keyframes yellow-fade {
@@ -476,7 +476,7 @@ p.setup-statline {
     background: #f96;
   }
   to {
-    background: #fff;
+    background: inherit;
   }
 }
 .fade-it {
