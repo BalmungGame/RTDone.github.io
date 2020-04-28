@@ -1,3 +1,5 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
 body {
 	min-width: 570px !important;
 }
@@ -62,6 +64,8 @@ body {
 	padding-right: 0;
 }
 #equip-container {
+	height: -webkit-max-content;
+	height: -moz-max-content;
 	height: max-content;
 }
 
@@ -272,7 +276,9 @@ data.dstat {
 .equip-list-img {
 	width: 90px;
 	height: 90px;
-	transform: scale(0.5);
+	-webkit-transform: scale(0.5);
+	    -ms-transform: scale(0.5);
+	        transform: scale(0.5);
 	margin-top: -50%;
 	margin-left: -50%;
 }
@@ -471,14 +477,6 @@ p.setup-statline:hover {
     background: inherit;
   }
 }
-@-moz-keyframes yellow-fade {
-  from {
-    background: #f96;
-  }
-  to {
-    background: inherit;
-  }
-}
 @keyframes yellow-fade {
   from {
     background: #f96;
@@ -489,7 +487,5 @@ p.setup-statline:hover {
 }
 .fade-it {
   -webkit-animation: yellow-fade 1.7s ease-in-out 0s;
-  -moz-animation: yellow-fade 1.7s ease-in-out 0s;
-  -o-animation: yellow-fade 1.7s ease-in-out 0s;
   animation: yellow-fade 1.7s ease-in-out 0s;
 }
