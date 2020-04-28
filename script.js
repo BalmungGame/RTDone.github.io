@@ -129,7 +129,8 @@ const elementTemplates = {
 	setupRandSelectPrefix : "rpe-select-",
 	setupRandOption : domdom.eleByID("rpe-option-tmp"),
 	setupRandOptionPrefix : "rpe-option-",
-
+	setupOptionSelectedEffect : domdom.eleByID("rpe-option-selected-effect-tmp"),
+	setupOptionSelectedEffectPrefix : "rpe-option-selected-effect-",
 
 	// setup stats
 	setupStat : domdom.eleByID("setup-stat-tmp"),
@@ -730,10 +731,26 @@ function addRandomAttributeElement(slot, equipKey) {
 
 				for (let rpere_i = 0; rpere_i < rpeRandomEffects.length; rpere_i++) {
 					let copyRPEData = [...rpeRandomEffects[rpere_i]]
-					let rpeEffectKey = copyRPEData[0]
-					let repEffectValue = copyRPEData[1]
 
-					let attributeText = txt(rtdeffect[rpeEffectKey].desc[settings.lang], [repEffectValue])
+					let attributeText = ""
+					let isEffect = false
+					let rpeAttributeKey = copyRPEData[0]
+					let rpeAttributeValue = [...copyRPEData]
+					if (copyRPEData[0].charAt(0) === "e") {
+						isEffect = true
+						rpeAttributeValue.shift()
+
+						attributeText = txt(rtdeffect[rpeAttributeKey].desc[settings.lang], rpeAttributeValue)
+						if (rtdeffect[rpeAttributeKey].hasOwnProperty("rpe") === true) {
+							attributeText = txt(rtdeffect[rpeAttributeKey].rpe[settings.lang], rpeAttributeValue)
+						}
+					} else if (copyRPEData[0].charAt(0) === "s") {
+						let rpeStatKey = copyRPEData[0]
+						let rpeStatValue = copyRPEData[1]
+
+						attributeText = rtdstat[rpeStatKey].name[settings.lang] + " " + rtdstat[rpeStatKey].unit[0] + rpeStatValue + rtdstat[rpeStatKey].unit[1]
+					}
+					
 
 					let newRPEOptionElement = domdom.newEleFromModel(elementTemplates.setupRandOption)
 					let newRPEOptionElementID = newRPEElementID + "-" + elementTemplates.setupRandOptionPrefix + rpere_i
@@ -749,6 +766,16 @@ function addRandomAttributeElement(slot, equipKey) {
 						let selectedEffect = settings.build[slot].s[rpe_i]
 						if (rtdrandomeffect[equipKey][rpere_i][0] === selectedEffect[0] && rtdrandomeffect[equipKey][rpere_i][1] === selectedEffect[1]) {
 							domdom.eleByID(newRPEOptionElementID).selected = true
+							// add desc if required :
+							if (isEffect && rtdeffect[rpeAttributeKey].hasOwnProperty("rpe") === true && rtdeffect[rpeAttributeKey].rpe.nodesc === 0) {
+								let setupOptionSelected = domdom.newEleFromModel(elementTemplates.setupOptionSelectedEffect)
+								let RPESelectedElementID = elementTemplates.setupOptionSelectedEffectPrefix + slot + "-" + equipKey + "-" + elementTemplates.setupRandOptionPrefix + rpere_i
+								setupOptionSelected.id = RPESelectedElementID
+
+								domdom.eleByID(newRAElementID+"-fields").appendChild(setupOptionSelected)
+								let selectedDescription = txt(rtdeffect[rpeAttributeKey].desc[settings.lang], rpeAttributeValue)
+								domdom.updateTextByID(RPESelectedElementID, selectedDescription)
+							}
 						}
 					}
 

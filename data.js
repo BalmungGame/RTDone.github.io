@@ -83,6 +83,11 @@ const rtdstat = {
 	s086: {name:{en:"Freeze Damage Bonus"}, unit:["<i class=\"stat\">","%</i>"]},
 	s087: {name:{en:"Poison Damage Bonus"}, unit:["<i class=\"stat\">","%</i>"]},
 	s088: {name:{en:"Shock Damage Bonus"}, unit:["<i class=\"stat\">","%</i>"]},
+	/*special debuffs*/
+	s801: {name:{en:"Slow Rate"}, unit:["<i class=\"stat\">","%</i>"]},
+	s802: {name:{en:"Black out Rate"}, unit:["<i class=\"stat\">","%</i>"]},
+	s803: {name:{en:"Knockback Rate"}, unit:["<i class=\"stat\">","%</i>"]},
+	s804: {name:{en:"Knock Down Rate"}, unit:["<i class=\"stat\">","%</i>"]},
 	/* Other */
 	s090: {name:{en:"OTHER"}},
 	s091: {name:{en:"Movement Speed"}, unit:["<i class=\"stat\">","</i>"]},
@@ -118,6 +123,7 @@ const rtdeffect = {
 		effects: {setbonus: ["c", "l", "h", "i"],}
 	},
 	e005: {
+		rpe:{en:"Effect <data class=\"ssstat\" value=\"#0#\">+#0#</data> Eternal sets or lower."},
 		desc:{en:"Effect <data class=\"ssstat\" value=\"#0#\">+#0#</data> Eternal sets or lower."},
 		effects: {setbonus: ["c", "l", "h", "i", "e"],}
 	},
@@ -132,51 +138,289 @@ const rtdeffect = {
 	/*legendary*/
 
 	/*holy*/
-	e041: {desc:{en:"Warrior's Attack is increased by <data value=\"#0#\">#0#%</data> when his HP drops below <data value=\"#1#\">#1#%</data>."}},
-	e042: {desc:{en:"<data value=\"#0#\">#0#%</data> chance of inflicting immediate death to poisoned enemies <i class=\"sstat\">(Deals huge damage to the boss)</i>."}},
-	e043: {desc:{en:"When the Warrior's Health drops to 0, it returns immediately to 30% along with a 10-sec recovery effect and a protective shelle that lasts for <data value=\"#0#\">#0#.0</data> sec (<data value=\"#1#\">#1#%</data> sec Cooldown)."}},
-	e044: {desc:{en:"Emits a Dragon Blessing every <data value=\"#0#\">#0#</data> sec."}},
+	e041: {
+		rpe:{nodesc:0,en:"[Holy Set Effect] Activate Majin Satyr"},
+		desc:{en:"Warrior's Attack is increased by <data value=\"#0#\">#0#%</data> when his HP drops below <data value=\"#1#\">#1#%</data>."}},
+	e042: {
+		rpe:{nodesc:0,en:"[Holy Set Effect] Activate Hand of Death"},
+		desc:{en:"<data value=\"#0#\">#0#%</data> chance of inflicting immediate death to poisoned enemies <i class=\"sstat\">(Deals huge damage to the boss)</i>."}},
+	e043: {
+		rpe:{nodesc:0,en:"[Holy Set Effect] Activate Will of Yggdrasil"},
+		desc:{en:"When the Warrior's Health drops to 0, it returns immediately to 30% along with a 10-sec recovery effect and a protective shelle that lasts for <data value=\"#0#\">#0#.0</data> sec (<data value=\"#1#\">#1#%</data> sec Cooldown)."}},
+	e044: {
+		rpe:{nodesc:0,en:"[Holy Set Effect] Activate Dragon Call"},
+		desc:{en:"Emits a Dragon Blessing every <data value=\"#0#\">#0#</data> sec."}},
 	e045: {desc:{en:"Has a small chance of recovering <data value=\"#0#\">#0#%</data> Health when attacking."}},
 	e046: {desc:{en:"TEXT"}},
 	/*infernal*/
-	e071: {desc:{en:"Receive no Damage when poisoned, and recover Health instead."}},
-	e072: {desc:{en:"Basic Attacks gain a very high chance of poisoning the enemy and breaking the enemy's Defense."}},
-	e073: {desc:{en:"When their Health drops below <data value=\"#0#\">#0#.0%</data>, Undead-type companions explode to deal <data value=\"#1#\">#1#.0%</data> area Damage."}},
-	e074: {desc:{en:"Emits <i class=\"sstat\">Blinding Light</i> from the Flame Phoenix' eyes every <data value=\"#0#\">#0#</data> sec.</i>"}},
-	e075: {desc:{en:"Summons a <i class=\"sstat\">Lightning Tank</i> every <data value=\"#0#\">#0#</data> sec.</i>"}},
-	e076: {desc:{en:"When Undead-type companions' Health is reduced by <data value=\"#0#\">#0#.0%</data>, all Importal-type allies' Full Health is increased by <data class=\"sstat\" value=\"#1#\">#1#%</data>"}},
-	e077: {desc:{en:"Has a <data value=\"#0#\">#0#%</data> chance of granting a protective shell that absorbs all Damage received for <data value=\"#1#\">#1#</data> sec and freezing the enemy when attacked."}},
-	e078: {desc:{en:"Companion is revived as a <i class=\"sstat\">Skeleton Knight</i> upon death."}},
-	e079: {desc:{en:"Undead-type companion's Attack Speed is increased by <data value=\"#0#\">#0#.0</data>"}},
-	e080: {desc:{en:"Azure Bahamut evolves into <i class=\"sstat\">Death Dragon Caluyax</i>"}},
-	e081: {desc:{en:"Leech Effect is increased by <data value=\"#0#\">#0#.0%</data> for Basic Attacks."}},
-	e082: {desc:{en:"<i class=\"sstat\">Your stats increase as companions fall in battle.</i>"}},
-	e083: {desc:{en:"Movement Speed is increased for all Air-type companions by <data value=\"#0#\">#0#</data>"}},
-	e084: {desc:{en:"Critical Damage is increased by <data value=\"#0#\">#0#.0%</data> for all Air-type companions."}},
+	e071: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Reklya"},
+		desc:{en:"Receive no Damage when poisoned, and recover Health instead."}},
+	e072: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Venom Master"},
+		desc:{en:"Basic Attacks gain a very high chance of poisoning the enemy and breaking the enemy's Defense."}},
+	e073: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Majin Necklace"},
+		desc:{en:"When their Health drops below <data value=\"#0#\">#0#.0%</data>, Undead-type companions explode to deal <data value=\"#1#\">#1#.0%</data> area Damage."}},
+	e074: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Eye of the Phoenix"},
+		desc:{en:"Emits <i class=\"sstat\">Blinding Light</i> from the Flame Phoenix' eyes every <data value=\"#0#\">#0#</data> sec.</i>"}},
+	e075: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate AI Zeros"},
+		desc:{en:"Summons a <i class=\"sstat\">Lightning Tank</i> every <data value=\"#0#\">#0#</data> sec.</i>"}},
+	e076: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Caluyax's Bone Armor"},
+		desc:{en:"When Undead-type companions' Health is reduced by <data value=\"#0#\">#0#.0%</data>, all Importal-type allies' Full Health is increased by <data class=\"sstat\" value=\"#1#\">#1#%</data>"}},
+	e077: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Catella's Leviathan Shield"},
+		desc:{en:"Has a <data value=\"#0#\">#0#%</data> chance of granting a protective shell that absorbs all Damage received for <data value=\"#1#\">#1#</data> sec and freezing the enemy when attacked."}},
+	e078: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Necromancy Power (3 Set)"},
+		desc:{en:"Companion is revived as a <i class=\"sstat\">Skeleton Knight</i> upon death."}},
+	e079: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Necromancy Power (4 Set)"},
+		desc:{en:"Undead-type companion's Attack Speed is increased by <data value=\"#0#\">#0#.0</data>"}},
+	e080: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Necromancy Power (5 Set)"},
+		desc:{en:"Azure Bahamut evolves into <i class=\"sstat\">Death Dragon Caluyax</i>"}},
+	e081: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Void Power (4 Set)"},
+		desc:{en:"Leech Effect is increased by <data value=\"#0#\">#0#.0%</data> for Basic Attacks."}},
+	e082: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Void Power (5 Set)"},
+		desc:{en:"<i class=\"sstat\">Your stats increase as companions fall in battle.</i>"}},
+	e083: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Skuld's Protector (3 Set)"},
+		desc:{en:"Movement Speed is increased for all Air-type companions by <data value=\"#0#\">#0#</data>"}},
+	e084: {
+		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Skuld's Protector (5 Set)"},
+		desc:{en:"Critical Damage is increased by <data value=\"#0#\">#0#.0%</data> for all Air-type companions."}},
 	e085: {desc:{en:"TEXT"}},
 	e086: {desc:{en:"TEXT"}},
 	/*eternals*/
-	e101: {desc:{en:"Every time <data value=\"#0#\">#0#%</data> Health is lost, Critical Damage is increased by <data value=\"#1#\">#1#%</data> and Attack Speed by <data value=\"#2#\">#2#%</data>"}},
-	e102: {desc:{en:"Launches a Destiny Blast every <data value=\"#0#\">#0#</data> seconds"}},
-	e103: {desc:{en:"Basic Attacks have a <data value=\"#0#\">#0#%</data> chance of reducing the current Cooldown of a certain Skill by <data value=\"#1#\">#1#</data> sec."}},
-	e104: {desc:{en:"Instantly strikes a shocked enemy with Raztori's Lightining, increasing Damage by <data value=\"#0#\">#0#%</data>, of your Attack value. Has a <data value=\"#1#\">#1#%</data> chance of paralyzing the enemy."}},
-	e105: {desc:{en:"Attack Speed increases when Penetration power increases."}},
-	e106: {desc:{en:"After having taking life-threatening damage, attacks within <data value=\"#0#\">#0#</data> seconds recovers <data value=\"#1#\">#1#%</data> HP and HP won't drop below 1."}},
-	e107: {desc:{en:"When attacking an enemy with less than <data value=\"#0#\">#0#%</data> life remaining, it deals damage equal to <data value=\"#1#\">#1#%</data> of the target's maximum health.<br>The affected targets are bleeding, which greatly reduces their damage."}},
+	e101: {
+		rpe:{nodesc:0,en:"[Eternal Set Effect] Activate God of Battle Eclipse"},
+		desc:{en:"Every time <data value=\"#0#\">#0#%</data> Health is lost, Critical Damage is increased by <data value=\"#1#\">#1#%</data> and Attack Speed by <data value=\"#2#\">#2#%</data>"}},
+	e102: {
+		rpe:{nodesc:0,en:"[Eternal Set Effect] Activate Destiny Hunter"},
+		desc:{en:"Launches a Destiny Blast every <data value=\"#0#\">#0#</data> seconds"}},
+	e103: {
+		rpe:{nodesc:0,en:"[Eternal Set Effect] Activate Uranus, God of the Skies"},
+		desc:{en:"Basic Attacks have a <data value=\"#0#\">#0#%</data> chance of reducing the current Cooldown of a certain Skill by <data value=\"#1#\">#1#</data> sec."}},
+	e104: {
+		rpe:{nodesc:0,en:"[Eternal Set Effect] Activate Raztori Prey"},
+		desc:{en:"Instantly strikes a shocked enemy with Raztori's Lightining, increasing Damage by <data value=\"#0#\">#0#%</data>, of your Attack value. Has a <data value=\"#1#\">#1#%</data> chance of paralyzing the enemy."}},
+	e105: {
+		rpe:{nodesc:0,en:"[Eternal Set Effect] Activate The Manticore's End"},
+		desc:{en:"Attack Speed increases when Penetration power increases."}},
+	e106: {
+		rpe:{nodesc:0,en:"[Eternal Set Effect] Activate Undying"},
+		desc:{en:"After having taking life-threatening damage, attacks within <data value=\"#0#\">#0#</data> seconds recovers <data value=\"#1#\">#1#%</data> HP and HP won't drop below 1."}},
+	e107: {
+		rpe:{nodesc:0,en:"[Eternal Set Effect] Activate Death Sentence"},
+		desc:{en:"When attacking an enemy with less than <data value=\"#0#\">#0#%</data> life remaining, it deals damage equal to <data value=\"#1#\">#1#%</data> of the target's maximum health.<br>The affected targets are bleeding, which greatly reduces their damage."}},
 	e108: {desc:{en:"<i class=\"sstat\">Obtain Abyssal Power by sacrificing half of the life:</i><br>Cannot recover <data value=\"#0#\">#0#%</data> and more of its Health but received damage is reduced by <data value=\"#1#\">#1#%</data>"}},
 	e109: {desc:{en:"When recovers more than its maximum health, <data value=\"#0d#\">#0d#%</data> of over-healed amount is converted to <i class=\"sstat\">Void Curtain</i> of its <data value=\"#1#\">#1#%</data> of maximum health."}},
 	e110: {desc:{en:"Fire <i class=\"sstat\">Void Thorn</i> in every <data value=\"#0#\">#0#</data> sec. When the Health drops below <data value=\"#1#\">#1#%</data>, fire <i class=\"sstat\">Enhanced Void Thorn</i>"}},
 	e111: {desc:{en:"After having damage, <i class=\"sstat\">Reflect</i> <data value=\"#0#\">#0#%</data> of the damage. The damage increases <data value=\"#1#\">#1#%</data> for each <data value=\"#2#\">#2#%</data> of Health loss. Activate critically only for monsters."}},
-	e112: {desc:{en:"<i class=\"sstat\">Gain demonic power when Awoken Skill is used:</i><br>Health Recovery On Attack <data value=\"#0#\">#0#%</data> and Penetration Power <data value=\"#1#\">#1#%</data>.<br>Also Shadow arrows are shot when you attack."}},
+	e112: {
+		rpe:{nodesc:0,en:"[Eternal Set Effect] Activate Demon Power"},
+		desc:{en:"<i class=\"sstat\">Gain demonic power when Awoken Skill is used:</i><br>Health Recovery On Attack <data value=\"#0#\">#0#%</data> and Penetration Power <data value=\"#1#\">#1#%</data>.<br>Also Shadow arrows are shot when you attack."}},
 	e113: {desc:{en:"TEXT"}},
 	e114: {desc:{en:"TEXT"}},
 	e115: {desc:{en:"TEXT"}},
 }
 // for effect e007
 const rtdrandomeffect = {
-	e024n: [["e005",1],["e005",2]],
-	e033r1: [["e005",1],["e005",2]],
-	e035b: [["e005",1],["e005",2]],
+	e024n: [
+		/* +1/2 Set*/
+		["e005",2],["e005",1],
+		/*Eternal Set Effects*/
+		["e112",2.0,50.0],["e107",15,15],["e106",5,1],["e105"],["e104",300,20],["e103",3,5],["e102",5],["e101",1,15,2],
+		/*Infernal Set Effects*/
+		["e084",10],["e083",0.3],["e082"],["e081",2.0],["e080"],["e079",10.0],["e078"],["e077",3,5],["e076",50.0,10],["e075",25],["e074",1],["e073",20.0,500.0],["e072"],["e071"],
+		/*Holy Set Effects*/
+		["e044",25],["e043",1.0,500],["e042",1],["e041",150,40.0],
+		/*Stats*/
+		/*Attack*/
+		["s001",99],["s001",98],["s001",97],["s001",96],["s001",95],["s001",94],["s001",93],["s001",92],["s001",91],["s001",90],
+		["s001",89],["s001",88],["s001",87],["s001",86],["s001",85],["s001",84],["s001",83],["s001",82],["s001",81],["s001",80],
+		["s002",99],["s002",98],["s002",97],["s002",96],["s002",95],["s002",94],["s002",93],["s002",92],["s002",91],["s002",90],
+		["s002",89],["s002",88],["s002",87],["s002",86],["s002",85],["s002",84],["s002",83],["s002",82],["s002",81],["s002",80],
+		["s003",10],["s003",9],["s003",8],["s003",7],["s003",6],["s003",5],["s003",4],["s003",3],["s003",2],["s003",1],
+		["s006",5],["s006",4],["s006",3],["s006",2],["s006",1],
+		["s007",99],["s007",98],["s007",97],["s007",96],["s007",95],["s007",94],["s007",93],["s007",92],["s007",91],["s007",90],
+		["s007",89],["s007",88],["s007",87],["s007",86],["s007",85],["s007",84],["s007",83],["s007",82],["s007",81],["s007",80],
+		["s008",49],["s008",48],["s008",47],["s008",46],["s008",45],["s008",44],["s008",43],["s008",42],["s008",41],["s008",40],
+		["s011",36],
+		["s012",20],["s012",19],["s012",18],["s012",17],["s012",16],
+		["s014",99],["s014",98],["s014",97],["s014",96],["s014",95],["s014",94],["s014",93],["s014",92],["s014",91],["s014",90],
+		["s014",89],["s014",88],["s014",87],["s014",86],["s014",85],["s014",84],["s014",83],["s014",82],["s014",81],["s014",80],
+		["s015",49],["s015",48],["s015",47],["s015",46],["s015",45],["s015",44],["s015",43],["s015",42],["s015",41],["s015",40],
+		["s017",99],["s017",98],["s017",97],["s017",96],["s017",95],["s017",94],["s017",93],["s017",92],["s017",91],["s017",90],
+		["s017",89],["s017",88],["s017",87],["s017",86],["s017",85],["s017",84],["s017",83],["s017",82],["s017",81],["s017",80],
+		["s018",49],["s018",48],["s018",47],["s018",46],["s018",45],["s018",44],["s018",43],["s018",42],["s018",41],["s018",40],
+		/*Health*/
+		["s031",99],["s031",98],["s031",97],["s031",96],["s031",95],["s031",94],["s031",93],["s031",92],["s031",91],["s031",90],
+		["s031",89],["s031",88],["s031",87],["s031",86],["s031",85],["s031",84],["s031",83],["s031",82],["s031",81],["s031",80],
+		["s032",99],["s032",98],["s032",97],["s032",96],["s032",95],["s032",94],["s032",93],["s032",92],["s032",91],["s032",90],
+		["s032",89],["s032",88],["s032",87],["s032",86],["s032",85],["s032",84],["s032",83],["s032",82],["s032",81],["s032",80],
+		["s033",0.2],["s033",0.19],["s033",0.18],["s033",0.17],["s033",0.16],["s033",0.15],["s033",0.14],["s033",0.13],["s033",0.12],["s033",0.11],
+		["s034",1.4],["s034",1.39],["s034",1.38],["s034",1.37],["s034",1.36],["s034",1.35],["s034",1.34],["s034",1.33],["s034",1.32],["s034",1.31],
+		/*Defense*/
+		["s051",99],["s051",98],["s051",97],["s051",96],["s051",95],["s051",94],["s051",93],["s051",92],["s051",91],["s051",90],
+		["s051",89],["s051",88],["s051",87],["s051",86],["s051",85],["s051",84],["s051",83],["s051",82],["s051",81],["s051",80],
+		["s052",99],["s052",98],["s052",97],["s052",96],["s052",95],["s052",94],["s052",93],["s052",92],["s052",91],["s052",90],
+		["s052",89],["s052",88],["s052",87],["s052",86],["s052",85],["s052",84],["s052",83],["s052",82],["s052",81],["s052",80],
+		/*Resistance*/
+		["s078",29],["s078",28],["s078",27],["s078",26],["s078",25],["s078",24],["s078",23],["s078",22],["s078",21],
+		["s079",29],["s079",28],["s079",27],["s079",26],["s079",25],["s079",24],["s079",23],["s079",22],["s079",21],
+		/*Control*/
+		["s081",10],["s081",9],["s081",8],["s081",7],["s081",6],["s081",5],["s081",4],["s081",3],["s081",2],["s081",1],
+		["s082",10],["s082",9],["s082",8],["s082",7],["s082",6],["s082",5],["s082",4],["s082",3],["s082",2],["s082",1],
+		["s083",10],["s083",9],["s083",8],["s083",7],["s083",6],["s083",5],["s083",4],["s083",3],["s083",2],["s083",1],
+		["s084",10],["s084",9],["s084",8],["s084",7],["s084",6],["s084",5],["s084",4],["s084",3],["s084",2],["s084",1],
+		["s085",20],["s085",19],["s085",18],["s085",17],["s085",16],
+		["s086",20],["s086",19],["s086",18],["s086",17],["s086",16],
+		["s087",20],["s087",19],["s087",18],["s087",17],["s087",16],
+		["s088",20],["s088",19],["s088",18],["s088",17],["s088",16],
+		["s801",15],["s801",14],["s801",13],["s801",12],["s801",11],
+		["s802",5],["s802",4],["s802",3],["s802",2],["s802",1],
+		["s803",5],["s803",4],["s803",3],["s803",2],["s803",1],
+		["s804",5],["s804",4],["s804",3],["s804",2],["s804",1],
+		/*Other*/
+		["s092",99],["s092",98],["s092",97],["s092",96],["s092",95],["s092",94],["s092",93],["s092",92],["s092",91],["s092",90],
+		["s092",89],["s092",88],["s092",87],["s092",86],["s092",85],["s092",84],["s092",83],["s092",82],["s092",81],["s092",80],
+		["s093",5],["s093",4],["s093",3],["s093",2],["s093",1],
+		["s097",99],["s097",98],["s097",97],["s097",96],["s097",95],["s097",94],["s097",93],["s097",92],["s097",91],["s097",90],
+		["s097",89],["s097",88],["s097",87],["s097",86],["s097",85],["s097",84],["s097",83],["s097",82],["s097",81],["s097",80],
+	],
+	e033r1: [
+		/* +1/2 Set*/
+		["e005",2],["e005",1],
+		/*Eternal Set Effects*/
+		["e112",2.0,50.0],["e107",15,15],["e106",5,1],["e105"],["e104",300,20],["e103",3,5],["e102",5],["e101",1,15,2],
+		/*Infernal Set Effects*/
+		["e084",10],["e083",0.3],["e082"],["e081",2.0],["e080"],["e079",10.0],["e078"],["e077",3,5],["e076",50.0,10],["e075",25],["e074",1],["e073",20.0,500.0],["e072"],["e071"],
+		/*Holy Set Effects*/
+		["e044",25],["e043",1.0,500],["e042",1],["e041",150,40.0],
+		/*Stats*/
+		/*Attack*/
+		["s001",99],["s001",98],["s001",97],["s001",96],["s001",95],["s001",94],["s001",93],["s001",92],["s001",91],["s001",90],
+		["s001",89],["s001",88],["s001",87],["s001",86],["s001",85],["s001",84],["s001",83],["s001",82],["s001",81],["s001",80],
+		["s002",99],["s002",98],["s002",97],["s002",96],["s002",95],["s002",94],["s002",93],["s002",92],["s002",91],["s002",90],
+		["s002",89],["s002",88],["s002",87],["s002",86],["s002",85],["s002",84],["s002",83],["s002",82],["s002",81],["s002",80],
+		["s003",10],["s003",9],["s003",8],["s003",7],["s003",6],["s003",5],["s003",4],["s003",3],["s003",2],["s003",1],
+		["s006",5],["s006",4],["s006",3],["s006",2],["s006",1],
+		["s007",99],["s007",98],["s007",97],["s007",96],["s007",95],["s007",94],["s007",93],["s007",92],["s007",91],["s007",90],
+		["s007",89],["s007",88],["s007",87],["s007",86],["s007",85],["s007",84],["s007",83],["s007",82],["s007",81],["s007",80],
+		["s008",49],["s008",48],["s008",47],["s008",46],["s008",45],["s008",44],["s008",43],["s008",42],["s008",41],["s008",40],
+		["s011",36],
+		["s012",20],["s012",19],["s012",18],["s012",17],["s012",16],
+		["s014",99],["s014",98],["s014",97],["s014",96],["s014",95],["s014",94],["s014",93],["s014",92],["s014",91],["s014",90],
+		["s014",89],["s014",88],["s014",87],["s014",86],["s014",85],["s014",84],["s014",83],["s014",82],["s014",81],["s014",80],
+		["s015",49],["s015",48],["s015",47],["s015",46],["s015",45],["s015",44],["s015",43],["s015",42],["s015",41],["s015",40],
+		["s017",99],["s017",98],["s017",97],["s017",96],["s017",95],["s017",94],["s017",93],["s017",92],["s017",91],["s017",90],
+		["s017",89],["s017",88],["s017",87],["s017",86],["s017",85],["s017",84],["s017",83],["s017",82],["s017",81],["s017",80],
+		["s018",49],["s018",48],["s018",47],["s018",46],["s018",45],["s018",44],["s018",43],["s018",42],["s018",41],["s018",40],
+		/*Health*/
+		["s031",99],["s031",98],["s031",97],["s031",96],["s031",95],["s031",94],["s031",93],["s031",92],["s031",91],["s031",90],
+		["s031",89],["s031",88],["s031",87],["s031",86],["s031",85],["s031",84],["s031",83],["s031",82],["s031",81],["s031",80],
+		["s032",99],["s032",98],["s032",97],["s032",96],["s032",95],["s032",94],["s032",93],["s032",92],["s032",91],["s032",90],
+		["s032",89],["s032",88],["s032",87],["s032",86],["s032",85],["s032",84],["s032",83],["s032",82],["s032",81],["s032",80],
+		["s033",0.2],["s033",0.19],["s033",0.18],["s033",0.17],["s033",0.16],["s033",0.15],["s033",0.14],["s033",0.13],["s033",0.12],["s033",0.11],
+		["s034",1.4],["s034",1.39],["s034",1.38],["s034",1.37],["s034",1.36],["s034",1.35],["s034",1.34],["s034",1.33],["s034",1.32],["s034",1.31],
+		/*Defense*/
+		["s051",99],["s051",98],["s051",97],["s051",96],["s051",95],["s051",94],["s051",93],["s051",92],["s051",91],["s051",90],
+		["s051",89],["s051",88],["s051",87],["s051",86],["s051",85],["s051",84],["s051",83],["s051",82],["s051",81],["s051",80],
+		["s052",99],["s052",98],["s052",97],["s052",96],["s052",95],["s052",94],["s052",93],["s052",92],["s052",91],["s052",90],
+		["s052",89],["s052",88],["s052",87],["s052",86],["s052",85],["s052",84],["s052",83],["s052",82],["s052",81],["s052",80],
+		/*Resistance*/
+		["s078",29],["s078",28],["s078",27],["s078",26],["s078",25],["s078",24],["s078",23],["s078",22],["s078",21],
+		["s079",29],["s079",28],["s079",27],["s079",26],["s079",25],["s079",24],["s079",23],["s079",22],["s079",21],
+		/*Control*/
+		["s081",10],["s081",9],["s081",8],["s081",7],["s081",6],["s081",5],["s081",4],["s081",3],["s081",2],["s081",1],
+		["s082",10],["s082",9],["s082",8],["s082",7],["s082",6],["s082",5],["s082",4],["s082",3],["s082",2],["s082",1],
+		["s083",10],["s083",9],["s083",8],["s083",7],["s083",6],["s083",5],["s083",4],["s083",3],["s083",2],["s083",1],
+		["s084",10],["s084",9],["s084",8],["s084",7],["s084",6],["s084",5],["s084",4],["s084",3],["s084",2],["s084",1],
+		["s085",20],["s085",19],["s085",18],["s085",17],["s085",16],
+		["s086",20],["s086",19],["s086",18],["s086",17],["s086",16],
+		["s087",20],["s087",19],["s087",18],["s087",17],["s087",16],
+		["s088",20],["s088",19],["s088",18],["s088",17],["s088",16],
+		["s801",15],["s801",14],["s801",13],["s801",12],["s801",11],
+		["s802",5],["s802",4],["s802",3],["s802",2],["s802",1],
+		["s803",5],["s803",4],["s803",3],["s803",2],["s803",1],
+		["s804",5],["s804",4],["s804",3],["s804",2],["s804",1],
+		/*Other*/
+		["s092",99],["s092",98],["s092",97],["s092",96],["s092",95],["s092",94],["s092",93],["s092",92],["s092",91],["s092",90],
+		["s092",89],["s092",88],["s092",87],["s092",86],["s092",85],["s092",84],["s092",83],["s092",82],["s092",81],["s092",80],
+		["s093",5],["s093",4],["s093",3],["s093",2],["s093",1],
+		["s097",99],["s097",98],["s097",97],["s097",96],["s097",95],["s097",94],["s097",93],["s097",92],["s097",91],["s097",90],
+		["s097",89],["s097",88],["s097",87],["s097",86],["s097",85],["s097",84],["s097",83],["s097",82],["s097",81],["s097",80],
+	],
+	e035b: [
+		/* +1/2 Set*/
+		["e005",2],["e005",1],
+		/*Eternal Set Effects*/
+		["e112",2.0,50.0],["e107",15,15],["e106",5,1],["e105"],["e104",300,20],["e103",3,5],["e102",5],["e101",1,15,2],
+		/*Infernal Set Effects*/
+		["e084",10],["e083",0.3],["e082"],["e081",2.0],["e080"],["e079",10.0],["e078"],["e077",3,5],["e076",50.0,10],["e075",25],["e074",1],["e073",20.0,500.0],["e072"],["e071"],
+		/*Holy Set Effects*/
+		["e044",25],["e043",1.0,500],["e042",1],["e041",150,40.0],
+		/*Stats*/
+		/*Attack*/
+		["s001",99],["s001",98],["s001",97],["s001",96],["s001",95],["s001",94],["s001",93],["s001",92],["s001",91],["s001",90],
+		["s001",89],["s001",88],["s001",87],["s001",86],["s001",85],["s001",84],["s001",83],["s001",82],["s001",81],["s001",80],
+		["s002",99],["s002",98],["s002",97],["s002",96],["s002",95],["s002",94],["s002",93],["s002",92],["s002",91],["s002",90],
+		["s002",89],["s002",88],["s002",87],["s002",86],["s002",85],["s002",84],["s002",83],["s002",82],["s002",81],["s002",80],
+		["s003",10],["s003",9],["s003",8],["s003",7],["s003",6],["s003",5],["s003",4],["s003",3],["s003",2],["s003",1],
+		["s006",5],["s006",4],["s006",3],["s006",2],["s006",1],
+		["s007",99],["s007",98],["s007",97],["s007",96],["s007",95],["s007",94],["s007",93],["s007",92],["s007",91],["s007",90],
+		["s007",89],["s007",88],["s007",87],["s007",86],["s007",85],["s007",84],["s007",83],["s007",82],["s007",81],["s007",80],
+		["s008",49],["s008",48],["s008",47],["s008",46],["s008",45],["s008",44],["s008",43],["s008",42],["s008",41],["s008",40],
+		["s011",36],
+		["s012",20],["s012",19],["s012",18],["s012",17],["s012",16],
+		["s014",99],["s014",98],["s014",97],["s014",96],["s014",95],["s014",94],["s014",93],["s014",92],["s014",91],["s014",90],
+		["s014",89],["s014",88],["s014",87],["s014",86],["s014",85],["s014",84],["s014",83],["s014",82],["s014",81],["s014",80],
+		["s015",49],["s015",48],["s015",47],["s015",46],["s015",45],["s015",44],["s015",43],["s015",42],["s015",41],["s015",40],
+		["s017",99],["s017",98],["s017",97],["s017",96],["s017",95],["s017",94],["s017",93],["s017",92],["s017",91],["s017",90],
+		["s017",89],["s017",88],["s017",87],["s017",86],["s017",85],["s017",84],["s017",83],["s017",82],["s017",81],["s017",80],
+		["s018",49],["s018",48],["s018",47],["s018",46],["s018",45],["s018",44],["s018",43],["s018",42],["s018",41],["s018",40],
+		/*Health*/
+		["s031",99],["s031",98],["s031",97],["s031",96],["s031",95],["s031",94],["s031",93],["s031",92],["s031",91],["s031",90],
+		["s031",89],["s031",88],["s031",87],["s031",86],["s031",85],["s031",84],["s031",83],["s031",82],["s031",81],["s031",80],
+		["s032",99],["s032",98],["s032",97],["s032",96],["s032",95],["s032",94],["s032",93],["s032",92],["s032",91],["s032",90],
+		["s032",89],["s032",88],["s032",87],["s032",86],["s032",85],["s032",84],["s032",83],["s032",82],["s032",81],["s032",80],
+		["s033",0.2],["s033",0.19],["s033",0.18],["s033",0.17],["s033",0.16],["s033",0.15],["s033",0.14],["s033",0.13],["s033",0.12],["s033",0.11],
+		["s034",1.4],["s034",1.39],["s034",1.38],["s034",1.37],["s034",1.36],["s034",1.35],["s034",1.34],["s034",1.33],["s034",1.32],["s034",1.31],
+		/*Defense*/
+		["s051",99],["s051",98],["s051",97],["s051",96],["s051",95],["s051",94],["s051",93],["s051",92],["s051",91],["s051",90],
+		["s051",89],["s051",88],["s051",87],["s051",86],["s051",85],["s051",84],["s051",83],["s051",82],["s051",81],["s051",80],
+		["s052",99],["s052",98],["s052",97],["s052",96],["s052",95],["s052",94],["s052",93],["s052",92],["s052",91],["s052",90],
+		["s052",89],["s052",88],["s052",87],["s052",86],["s052",85],["s052",84],["s052",83],["s052",82],["s052",81],["s052",80],
+		/*Resistance*/
+		["s078",29],["s078",28],["s078",27],["s078",26],["s078",25],["s078",24],["s078",23],["s078",22],["s078",21],
+		["s079",29],["s079",28],["s079",27],["s079",26],["s079",25],["s079",24],["s079",23],["s079",22],["s079",21],
+		/*Control*/
+		["s081",10],["s081",9],["s081",8],["s081",7],["s081",6],["s081",5],["s081",4],["s081",3],["s081",2],["s081",1],
+		["s082",10],["s082",9],["s082",8],["s082",7],["s082",6],["s082",5],["s082",4],["s082",3],["s082",2],["s082",1],
+		["s083",10],["s083",9],["s083",8],["s083",7],["s083",6],["s083",5],["s083",4],["s083",3],["s083",2],["s083",1],
+		["s084",10],["s084",9],["s084",8],["s084",7],["s084",6],["s084",5],["s084",4],["s084",3],["s084",2],["s084",1],
+		["s085",20],["s085",19],["s085",18],["s085",17],["s085",16],
+		["s086",20],["s086",19],["s086",18],["s086",17],["s086",16],
+		["s087",20],["s087",19],["s087",18],["s087",17],["s087",16],
+		["s088",20],["s088",19],["s088",18],["s088",17],["s088",16],
+		["s801",15],["s801",14],["s801",13],["s801",12],["s801",11],
+		["s802",5],["s802",4],["s802",3],["s802",2],["s802",1],
+		["s803",5],["s803",4],["s803",3],["s803",2],["s803",1],
+		["s804",5],["s804",4],["s804",3],["s804",2],["s804",1],
+		/*Other*/
+		["s092",99],["s092",98],["s092",97],["s092",96],["s092",95],["s092",94],["s092",93],["s092",92],["s092",91],["s092",90],
+		["s092",89],["s092",88],["s092",87],["s092",86],["s092",85],["s092",84],["s092",83],["s092",82],["s092",81],["s092",80],
+		["s093",5],["s093",4],["s093",3],["s093",2],["s093",1],
+		["s097",99],["s097",98],["s097",97],["s097",96],["s097",95],["s097",94],["s097",93],["s097",92],["s097",91],["s097",90],
+		["s097",89],["s097",88],["s097",87],["s097",86],["s097",85],["s097",84],["s097",83],["s097",82],["s097",81],["s097",80],
+	],
 }
 
 const rtdset = {
