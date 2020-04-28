@@ -380,6 +380,18 @@ function updateSetupStatElement(statKey) {
 	if (settings.buildset.hasOwnProperty("se015") === true
 		&& (settings.buildset.se015.equips + settings.buildset.se015.effects) >= 2) {
 		allstats.s009 += allstats.s003
+	} else {
+		/* check if manticore effect is in any RPE */
+		for (let slotKey in settings.build) {
+			if (settings.build[slotKey].s.length > 0) {
+				let checkManticoreArray = settings.build[slotKey].s
+				for (var cma_i = 0; cma_i < checkManticoreArray.length; cma_i++) {
+					if (checkManticoreArray[cma_i][0] === "e105") {
+						allstats.s009 += allstats.s003
+					}
+				}
+			}
+		}
 	}
 
 
@@ -788,7 +800,7 @@ function addRandomAttributeElement(slot, equipKey) {
 
 				domdom.eleByID(newRPEElementID).addEventListener('change', function() {
 					let rpeData = this.value.split(",")
-					console.log(rpeData)
+
 					if (rpeData[2] == -1) {
 						settings.build[rpeData[0]].s.splice(rpeData[1], 1);
 					} else {
