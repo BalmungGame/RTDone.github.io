@@ -112,7 +112,10 @@ const settings = {
 	},
 	url: "",
 	notice: "",
-	showstats: 0,
+
+	viewleft: 1,
+
+	viewright: 0,
 	showrand: 0,
 	elr: "0" /*equip list rarity filter*/
 }
@@ -121,6 +124,11 @@ const elementTemplates = {
 	// setup sets
 	setupSet : domdom.eleByID("setup-set-tmp"),
 	setupSetPrefix : "setup-set-",
+
+	// setup equip attr
+	setupEquipAttributeOptionDefault : domdom.eleByID("sea-tmp-option-default"),
+	setupEquipAttributeOption : domdom.eleByID("sea-option-tmp"),
+
 
 	// setup random attr
 	setupRand : domdom.eleByID("setup-randomattributes-tmp"),
@@ -212,64 +220,86 @@ function initElements() {
 	domdom.eleByID("equip-itemset-tmp").remove()
 	domdom.eleByID("setup-stat-tmp").remove()
 
+	domdom.eleByID("sea-tmp-option-default").remove()
+	domdom.eleByID("sea-option-tmp").remove()
+
 	// add setup handlers
 	document.getElementById("setup-w").onclick = function () {
 		settings.build.w.k = null; 
 		settings.build.w.s = [];
+		delete settings.build.w.a
 		calcSetupSet()
 	}
 	document.getElementById("setup-o").onclick = function () {
 		settings.build.o.k = null; 
 		settings.build.o.s = [];
+		delete settings.build.o.a
 		calcSetupSet()
 	}
 	document.getElementById("setup-h").onclick = function () {
 		settings.build.h.k = null; 
 		settings.build.h.s = [];
+		delete settings.build.h.a
 		calcSetupSet()
 	}
 	document.getElementById("setup-c").onclick = function () {
 		settings.build.c.k = null; 
 		settings.build.c.s = [];
+		delete settings.build.c.a
 		calcSetupSet()
 	}
 	document.getElementById("setup-f").onclick = function () {
 		settings.build.f.k = null; 
 		settings.build.f.s = [];
+		delete settings.build.f.a
 		calcSetupSet()
 	}
 	document.getElementById("setup-r1").onclick = function () {
 		settings.build.r1.k = null; 
 		settings.build.r1.s = [];
+		delete settings.build.r1.a
 		calcSetupSet()
 	}
 	document.getElementById("setup-r2").onclick = function () {
 		settings.build.r2.k = null; 
 		settings.build.r2.s = [];
+		delete settings.build.r2.a
 		calcSetupSet()
 	}
 	document.getElementById("setup-e").onclick = function () {
 		settings.build.e.k = null; 
 		settings.build.e.s = [];
+		delete settings.build.e.a
 		calcSetupSet()
 	}
 	document.getElementById("setup-n").onclick = function () {
 		settings.build.n.k = null; 
 		settings.build.n.s = [];
+		delete settings.build.n.a
 		calcSetupSet()
 	}
 	document.getElementById("setup-b").onclick = function () {
 		settings.build.b.k = null; 
 		settings.build.b.s = [];
+		delete settings.build.b.a
 		calcSetupSet()
 	}
 	removeSetupSetElement()
 
+
+	document.getElementById("showsetupsets").onclick = function () {
+		settings.viewleft = 1
+	}
+	document.getElementById("showsetupattributes").onclick = function () {
+		settings.viewleft = 2
+	}
+
+
 	document.getElementById("showstats").onclick = function () {
-		settings.showstats = 1
+		settings.viewright = 1
 	}
 	document.getElementById("showequips").onclick = function () {
-		settings.showstats = 0
+		settings.viewright = 0
 	}
 
 
@@ -309,7 +339,7 @@ function addSetupStatElement(statKey) {
 	}
 }
 
-function updateSetupStatElement(statKey) {
+function updateSetupStatElement() {
 
 	// collect all stats
 	let allstats = {}
@@ -342,6 +372,26 @@ function updateSetupStatElement(statKey) {
 					let sEffectKey = slotItemSpecials[sis_i][0]
 					if (allstats.hasOwnProperty(sEffectKey) === true) {
 						allstats[sEffectKey] += slotItemSpecials[sis_i][1]
+					}
+				}
+			}
+
+			// from attributes
+			if (settings.build[slotKey].hasOwnProperty("a") === true) {
+				let slotAttributes = settings.build[slotKey].a
+				let equipKey = settings.build[slotKey].k
+
+				for (let sa_i = 0; sa_i < slotAttributes.length; sa_i++) {
+					let sAttributeKey = slotAttributes[sa_i]
+					let tempKey = sAttributeKey
+					let attributeStatKey = "s" + tempKey.slice(1)
+
+					let attrPoolKey = rtdequip[equipKey].apid
+					for (let ast_i = 0; ast_i < rtdattributepools[attrPoolKey].length; ast_i++) {
+						let attributeOfPool = rtdattributepools[attrPoolKey][ast_i]
+						if (attributeOfPool[0] === attributeStatKey) {
+							allstats[attributeStatKey] += attributeOfPool[2]
+						}
 					}
 				}
 			}
@@ -407,6 +457,12 @@ function updateSetupStatElement(statKey) {
 			domdom.updateAttributeByID("setup-stat-"+statKey, "data-show", 1)
 		}
 	}
+}
+
+function newItemEquipped(slotKey) {
+	updateSEAElement(slotKey, "pool")
+	updateSEAElement(slotKey, "attrcount")
+	calcSetupSet()
 }
 
 function addEquipItemsetElement(setKey) {
@@ -509,17 +565,17 @@ function addEquipItemsetElement(setKey) {
 			if (["r1","r2"].indexOf(equipKeyInfo.type) !== -1) {
 				if (settings.build.r1.k === null) {
 					settings.build.r1.k = equipKey
-					calcSetupSet()
+					newItemEquipped("r1")
 				} else if (settings.build.r2.k === null) {
 					settings.build.r2.k = equipKey
-					calcSetupSet()
+					newItemEquipped("r2")
 				} else {
 					settings.notice = "Remove one ring to equip"
 				}
 			} else {
 				if (settings.build[equipKeyInfo.type].k === null) {
 					settings.build[equipKeyInfo.type].k = equipKey
-					calcSetupSet()
+					newItemEquipped(equipKeyInfo.type)
 				} else {
 					settings.notice = "Remove the " + rtdequiptype[equipKeyInfo.type][settings.lang] + " to equip"
 				}
@@ -586,7 +642,7 @@ function addSetupSetElement(setKey) {
 
 	// add handler
 	document.getElementById(newElementID+"-name").onclick = function () {
-		settings.showstats = 0
+		settings.viewright = 0
 		if (settings.elr !== "0" && settings.elr !== setKeyInfo.rarity) {
 			settings.elr = setKeyInfo.rarity
 		}
@@ -676,7 +732,7 @@ function addSetupSetElement(setKey) {
 
 		// add handler
 		document.getElementById(itemElementID).onclick = function () {
-			settings.showstats = 0
+			settings.viewright = 0
 			if (settings.elr !== "0" && settings.elr !== setKeyInfo.rarity) {
 				settings.elr = setKeyInfo.rarity
 			}
@@ -705,6 +761,33 @@ function removeSetupRandElement() {
 	settings.showrand = 0
 }
 
+function removeSetupAttributeElement() {
+
+	for (let slot in settings.build) {
+		// TO DO
+		/*let setupRandContainer = domdom.eleByID("setup-randomattributes");
+		while (setupRandContainer.firstChild) {
+		  setupRandContainer.removeChild(setupRandContainer.firstChild);
+		}*/
+	}
+
+	
+
+}
+
+function getSEcount(slot) {
+	let count = 0 
+	let special = settings.build[slot].s
+	for (let si = 0; si < special.length; si++) {
+		let specialEffect = special[si]
+
+		if (specialEffect[0].charAt(0) === "s" || specialEffect[0].charAt(0) === "e") {
+			count++
+		}
+	}
+	return count
+}
+
 function addRandomAttributeElement(slot, equipKey) {
 	let newSetupRandElement = domdom.newEleFromModel(elementTemplates.setupRand)
 	let newRAElementID = elementTemplates.setupRandPrefix + slot + "-" + equipKey
@@ -721,8 +804,6 @@ function addRandomAttributeElement(slot, equipKey) {
 
 	// add the select
 	let equipEffects = [...rtdequip[equipKey].effects]
-
-
 
 	for (let raee_i = 0; raee_i < equipEffects.length; raee_i++) {
 		if (equipEffects[raee_i][0] === "e007") {
@@ -794,7 +875,7 @@ function addRandomAttributeElement(slot, equipKey) {
 				}
 
 				// disable this select if the previous ones are not used
-				if (settings.build[slot].s.length < rpe_i) {
+				if (getSEcount(slot) < rpe_i) {
 					domdom.updateAttributeByID(newRPEElementID, "disabled", "disabled")
 				}
 
@@ -827,6 +908,176 @@ function addRandomAttributeElement(slot, equipKey) {
 
 	settings.showrand = 1
 }
+
+function reloadSEAElements() {
+	for (let slotKey in settings.build) {
+		if (settings.build[slotKey].k !== null) {
+			let equipKey = settings.build[slotKey].k
+			updateSEAElement(slotKey, "pool")
+			updateSEAElement(slotKey, "attrcount")
+		}
+	}
+}
+
+function updateSEAElement(slot, type=""){
+	let slotKey = slot
+	let equipKey = settings.build[slotKey].k
+
+	if (type == "state") {
+		if (equipKey === null) {
+			for (let select_i = 1; select_i <= selectTotal; select_i++) {
+				let selectOptionElementID = "sea-" + slotKey + "-" + select_i + "-option-default"
+				domdom.eleByID(selectOptionElementID).selected = true
+			}
+		} else {
+			let equipRarity = equipKey.charAt(0)
+			let selectTotal = rtdrarity[equipRarity].maxattr
+			
+			for (let select_i = 1; select_i <= selectTotal; select_i++) {
+				let seaSelectElementID = "sea-" + slot + "-select-" + select_i
+
+				// disable this select if the previous ones are not used
+				if (settings.build[slotKey].hasOwnProperty("a") !== true) {
+					if (select_i > 1) {
+						domdom.updateAttributeByID(seaSelectElementID, "disabled", "disabled")
+					}
+				} else if (settings.build[slotKey].a.length  < select_i - 1) {
+					domdom.updateAttributeByID(seaSelectElementID, "disabled", "disabled")
+				} else {
+					let selectElementID = "sea-" + slotKey + "-select-" + select_i
+					domdom.eleByID(selectElementID).removeAttribute("disabled")
+
+					// select the option
+					let apid = rtdequip[equipKey].apid
+					let attributeList = rtdattributepools[apid]
+					for (let attr_i = 0; attr_i < attributeList.length; attr_i++) {
+						let attributeData = attributeList[attr_i]
+						let attributeKey = attributeData[0]
+
+						let realAttributeKey = "a" + attributeKey.slice(1)
+						let selectedAttributeKey = settings.build[slotKey].a[select_i - 1]
+						if (selectedAttributeKey == realAttributeKey) {
+							let selectOptionElementID = "sea-" + slotKey + "-" + select_i + "-option-" + realAttributeKey
+							domdom.eleByID(selectOptionElementID).selected = true
+						}
+					}
+				}
+			}
+
+			// default all selects that doesn't have attribute
+			for (let msd_i = 0; msd_i < selectTotal; msd_i++) {
+				let selectID = msd_i + 1
+
+				if (settings.build[slotKey].hasOwnProperty("a") === true && typeof settings.build[slotKey].a[msd_i] === 'undefined') {
+					let selectOptionElementID = "sea-" + slotKey + "-" + selectID + "-option-default"
+					domdom.eleByID(selectOptionElementID).selected = true
+				}
+			}
+		}
+	} else if (type == "pool" && equipKey !== null) {
+		
+		// refresh pool
+		let equipRarity = equipKey.charAt(0)
+		let selectTotal = rtdrarity[equipRarity].maxattr
+		for (let select_i = 1; select_i <= selectTotal; select_i++) {
+			let seaSelectElementID = "sea-" + slot + "-select-" + select_i
+			let seaOptionPrefixElementID = "sea-" + slot + "-" + select_i + "-option-"
+
+			// remove all options first
+			let seaElement = domdom.eleByID(seaSelectElementID);
+			while (seaElement.firstChild) {
+				seaElement.removeChild(seaElement.firstChild);
+			}
+
+			let seaOptionDefaultElement = domdom.newEleFromModel(elementTemplates.setupEquipAttributeOptionDefault)
+			// add the default option
+			let seaOptionDefaultElementID = seaOptionPrefixElementID + "default"
+			seaOptionDefaultElement.id = seaOptionDefaultElementID
+			domdom.eleByID(seaSelectElementID).appendChild(seaOptionDefaultElement)
+			domdom.updateAttributeByID(seaOptionDefaultElementID, "value", slot + "," + select_i + ",-1")
+
+			// add all 
+			let apid = rtdequip[equipKey].apid
+			let attributeList = rtdattributepools[apid]
+			for (let attr_i = 0; attr_i < attributeList.length; attr_i++) {
+				let attributeData = attributeList[attr_i]
+				let attributeKey = attributeData[0]
+				let attributeMin = attributeData[1]
+				let attributeMax = attributeData[2]
+
+				let attributeText = ""
+				if (attributeKey.charAt(0) == "s") {
+					let statD = rtdstat[attributeKey]
+					attributeText = statD.name[settings.lang] + " " + statD.unit[0] + attributeMax + statD.unit[1]
+
+					let realAttributeKey = "a" + attributeKey.slice(1)
+					let seaOptionElement = domdom.newEleFromModel(elementTemplates.setupEquipAttributeOption)
+					let seaOptionElementID = seaOptionPrefixElementID + realAttributeKey
+					seaOptionElement.id = seaOptionElementID
+
+					domdom.eleByID(seaSelectElementID).appendChild(seaOptionElement)
+
+					domdom.updateAttributeByID(seaOptionElementID, "value", slot + "," + select_i + "," + realAttributeKey)
+					domdom.updateTextByID(seaOptionElementID, attributeText)
+				}
+			}
+
+			domdom.eleByID(seaSelectElementID).addEventListener('change', function() {
+				let seaData = this.value.split(",")
+
+				// check if we have an array item for attributes 
+				if (settings.build[seaData[0]].hasOwnProperty("a") !== true) {
+					if (seaData[2] == -1) {
+						return false
+					}
+					settings.build[seaData[0]].a = []
+				} else if (settings.build[seaData[0]].a.length >= 5) {
+					settings.build[seaData[0]].a.splice(4, settings.build[seaData[0]].a.length - 4);
+					calcSetupSet()
+					//refreshSetupAttributeElements()
+					return false
+				}
+
+				let attributeArray = settings.build[seaData[0]].a
+				// we have an attribute array so we can work on it
+				if (seaData[2] == -1) {
+					settings.build[seaData[0]].a.splice(seaData[1]-1, 1)
+
+					if (settings.build[seaData[0]].a.length === 0) {
+						// remove array of attributes if no attributes
+						delete settings.build[seaData[0]].a
+					}
+				} else {
+					// check if attribute doesn't exist yet 
+					if (settings.build[seaData[0]].a.indexOf(seaData[2]) === -1) {
+						settings.build[seaData[0]].a.push(seaData[2])
+						updateSEAElement(slot, "state")
+					}
+					settings.build[seaData[0]].a.sort()
+				}
+				calcSetupSet()
+				//refreshSetupAttributeElements()
+			});
+			
+		}
+	} else if (type == "attrcount") {
+		if (equipKey !== null) {
+			let selectCount = 5
+			let equipRarity = equipKey.charAt(0)
+			let rarityAttrCount = rtdrarity[equipRarity].maxattr
+			for (let  s_i = 0; s_i < selectCount; s_i++) {
+				let selectID = s_i + 1
+				let seaSelectElementID = "sea-" + slot + "-select-" + selectID
+				if (selectID <= rarityAttrCount) {
+					domdom.updateAttributeByID(seaSelectElementID, "data-show", 1)
+				} else {
+					domdom.updateAttributeByID(seaSelectElementID, "data-show", 0)
+				}
+			}
+		}
+	} 
+}
+
 
 function calcSetupSet() {
 
@@ -935,9 +1186,11 @@ function refreshSetupSetElements() {
 	// also refresh the random attributes
 	refreshSetupRandElements()
 
+	// also refresh Setup Attribute
+	refreshSetupAttributeElements()
 	// also refresh stats
-	// TO DO
 }
+
 
 function refreshSetupRandElements() {
 	removeSetupRandElement()
@@ -954,6 +1207,18 @@ function refreshSetupRandElements() {
 					}
 				}
 			}
+		}
+	}
+}
+
+function refreshSetupAttributeElements(){
+	removeSetupAttributeElement()
+
+	// TO DO
+	for (let slotKey in settings.build) {
+		if (settings.build[slotKey].k !== null) {
+			let equipKey = settings.build[slotKey].k
+			updateSEAElement(slotKey , "state")
 		}
 	}
 }
@@ -992,13 +1257,15 @@ function setUrl() {
 function getUrl() {
 	let url = new URL(window.location.href);
 	let b = url.searchParams.get("b");
+	if (b === null) {return;}
 	lib.decompress(b).then(output => {
 		settings.build = JSON.parse(output)
+		reloadSEAElements()
 		calcSetupSet()
 
 		for (let slot in settings.build) {
 			if (settings.build[slot].k !== null) {
-				settings.showstats = 1
+				settings.viewright = 1
 			}
 		}
 	});
@@ -1027,6 +1294,13 @@ let gameUILoop = function () {
 			domdom.updateAttributeBySelector("#setup-"+slot+" .equip-img", "data-rarity", 0)
 			domdom.updateAttributeBySelector("#setup-"+slot+" .equip-img", "data-offset", 0)
 			domdom.updateAttributeBySelector("#setup-"+slot+" .equip-img", "data-type", 0)
+			// attribute list
+			domdom.updateAttributeByID("sea-"+slot, "data-show", 0)
+			domdom.updateAttributeByID("sea-"+slot, "data-equipped", 0)
+			domdom.updateAttributeBySelector("#sea-"+slot+" .equip-list-img", "data-rarity", 0)
+			domdom.updateAttributeBySelector("#sea-"+slot+" .equip-list-img", "data-offset", 0)
+			domdom.updateAttributeBySelector("#sea-"+slot+" .equip-list-img", "data-type", 0)
+
 		} else {
 			let equipKeyInfo = keyInfo("rtdequip", slotData.k)
 
@@ -1037,6 +1311,13 @@ let gameUILoop = function () {
 			domdom.updateAttributeBySelector("#setup-"+slot+" .equip-img", "data-rarity", itemRarity)
 			domdom.updateAttributeBySelector("#setup-"+slot+" .equip-img", "data-offset", itemPos)
 			domdom.updateAttributeBySelector("#setup-"+slot+" .equip-img", "data-type", itemType)
+
+			// attribute list
+			domdom.updateAttributeByID("sea-"+slot, "data-show", 1)
+			domdom.updateAttributeByID("sea-"+slot, "data-equipped", 1)
+			domdom.updateAttributeBySelector("#sea-"+slot+" .equip-list-img", "data-rarity", itemRarity)
+			domdom.updateAttributeBySelector("#sea-"+slot+" .equip-list-img", "data-offset", itemPos)
+			domdom.updateAttributeBySelector("#sea-"+slot+" .equip-list-img", "data-type", itemType)
 		}
 	}
 
@@ -1049,13 +1330,18 @@ let gameUILoop = function () {
 	}
 
 
-	if (settings.showstats === 1) {
-		domdom.updateAttributeByID("equiplistnav", "data-equiplist", 0)
-		domdom.updateAttributeByID("equiplist-section", "data-equiplist", 0)
-	} else {
-		domdom.updateAttributeByID("equiplistnav", "data-equiplist", 1)
-		domdom.updateAttributeByID("equiplist-section", "data-equiplist", 1)
+	// view left
+	domdom.updateAttributeByID("equiplistnav", "data-viewleft", settings.viewleft)
+	domdom.updateAttributeByID("stats-section", "data-viewleft", settings.viewleft)
 
+
+
+	if (settings.viewright === 1) {
+		domdom.updateAttributeByID("equiplistnav", "data-viewright", 0)
+		domdom.updateAttributeByID("equiplist-section", "data-viewright", 0)
+	} else {
+		domdom.updateAttributeByID("equiplistnav", "data-viewright", 1)
+		domdom.updateAttributeByID("equiplist-section", "data-viewright", 1)
 
 		domdom.updateAttributeByID("equip-itemset-filter", "data-color", settings.elr)
 		domdom.updateAttributeByID("equip-itemset-list", "data-color", settings.elr)

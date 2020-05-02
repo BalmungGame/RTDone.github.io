@@ -44,7 +44,7 @@
 		</section>
 		<section id="setup-section" class="row col-md-12 container mx-auto">
 			<div id="setup-container" class="row">
-				<div class="col-md-12 col-xl-6">
+				<div class="col-6 col-md-12 col-xl-6">
 					<ul class="list-inline setup-item d-flex justify-content-center">
 						<li id="setup-w" class="list-inline-item setup-w"><div class="equip-img" data-rarity="0" data-type="w" data-offset="0"><div class="equip-border"></div></div></li>
 						<li id="setup-o" class="list-inline-item setup-o"><div class="equip-img" data-rarity="0" data-type="o" data-offset="0"><div class="equip-border"></div></div></li>
@@ -53,7 +53,7 @@
 						<li id="setup-f" class="list-inline-item setup-f"><div class="equip-img" data-rarity="0" data-type="f" data-offset="0"><div class="equip-border"></div></div></li>
 					</ul>
 				</div>
-				<div class="col-md-12 col-xl-6">
+				<div class="col-6 col-md-12 col-xl-6">
 					<ul class="list-inline setup-item d-flex justify-content-center">
 						<li id="setup-r1" class="list-inline-item setup-r"><div class="equip-img" data-rarity="0" data-type="r" data-offset="0"><div class="equip-border"></div></div></li>
 						<li id="setup-r2" class="list-inline-item setup-r"><div class="equip-img" data-rarity="0" data-type="r" data-offset="0"><div class="equip-border"></div></div></li>
@@ -63,15 +63,17 @@
 					</ul>
 				</div>
 			</div>
-		</section>
-		<section>
-			<ul id="equiplistnav" class="nav justify-content-center" data-equiplist="1">
-				<li id="showstats" class="nav-item clickable"><span class="nav-link">Stats</span></li>
+			<ul id="equiplistnav" class="nav d-flex flex-row bd-highlight mb-3" data-viewleft="1" data-viewright="1">
+				<li id="showsetupsets" class="nav-item clickable"><span class="nav-link">Sets</span></li>
+				<li id="showsetupattributes" class="nav-item clickable"><span class="nav-link">Attributes</span></li>
+				<li id="showsetupcompanions" class="nav-item disabled"><span class="nav-link">Companions</span></li>
+				<li id="showstats" class="nav-item ml-auto clickable"><span class="nav-link">Stats</span></li>
 				<li id="showequips" class="nav-item clickable"><span class="nav-link">Equipment List</span></li>
+				<li id="showcompanionlist" class="nav-item disabled"><span class="nav-link">Companion List</span></li>
 			</ul>
 		</section>
 		<div id="maincontent" class="row">
-		<section id="stats-section" class="col-md-12 col-lg-4 container mx-auto">
+		<section id="stats-section" class="col-md-12 col-lg-4 container mx-auto" data-viewleft="1">
 			<div id="sets-container" class="row align-items-start">
 				<ul id="setup-sets" class="col-12 list-group">
 					<li id="setup-set-tmp" class="list-group-item setup-set">
@@ -180,9 +182,117 @@
 					</li>
 				</ul>
 			</div>
+			<div id="setup-attributes" class="row align-items-start">
+				<ul id="setup-attributeitems" class="col-12 col-lg-12 list-group setup-item-attributes">
+					<li id="sea-w" class="list-group-item equip-item sea-w" data-show="0" data-equipped="0">
+						<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="w" data-offset="0"><div class="equip-border"></div></div></div>
+						<div class="equip-attributes-container d-inline-block">
+							<select id="sea-w-select-1" class="custom-select custom-select-sm" data-show="1">
+								<option id="sea-tmp-option-default" class="option-default" value="-1" selected>Random permanent attribute</option>
+								<option id="sea-option-tmp" value="1">%attribute%</option>
+							</select>
+							<select id="sea-w-select-2" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-w-select-3" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-w-select-4" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-w-select-5" class="custom-select custom-select-sm" data-show="1"></select>
+						</div>
+					</li>
+					<li id="sea-o" class="list-group-item equip-item sea-o" data-show="0" data-equipped="0">
+						<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="o" data-offset="0"><div class="equip-border"></div></div></div>
+						<div class="equip-attributes-container d-inline-block">
+							<select id="sea-o-select-1" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-o-select-2" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-o-select-3" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-o-select-4" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-o-select-5" class="custom-select custom-select-sm" data-show="1"></select>
+						</div>
+					</li>
+					<li id="sea-h" class="list-group-item equip-item sea-h" data-show="0" data-equipped="0">
+						<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="h" data-offset="0"><div class="equip-border"></div></div></div>
+						<div class="equip-attributes-container d-inline-block">
+							<select id="sea-h-select-1" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-h-select-2" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-h-select-3" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-h-select-4" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-h-select-5" class="custom-select custom-select-sm" data-show="1"></select>
+						</div>
+					</li>
+					<li id="sea-c" class="list-group-item equip-item sea-c" data-show="0" data-equipped="0">
+						<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="c" data-offset="0"><div class="equip-border"></div></div></div>
+						<div class="equip-attributes-container d-inline-block">
+							<select id="sea-c-select-1" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-c-select-2" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-c-select-3" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-c-select-4" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-c-select-5" class="custom-select custom-select-sm" data-show="1"></select>
+						</div>
+					</li>
+					<li id="sea-f" class="list-group-item equip-item sea-f" data-show="0" data-equipped="0">
+						<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="f" data-offset="0"><div class="equip-border"></div></div></div>
+						<div class="equip-attributes-container d-inline-block">
+							<select id="sea-f-select-1" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-f-select-2" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-f-select-3" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-f-select-4" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-f-select-5" class="custom-select custom-select-sm" data-show="1"></select>
+						</div>
+					</li>
+					<li id="sea-r1" class="list-group-item equip-item sea-r1" data-show="0" data-equipped="0">
+						<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="r1" data-offset="0"><div class="equip-border"></div></div></div>
+						<div class="equip-attributes-container d-inline-block">
+							<select id="sea-r1-select-1" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-r1-select-2" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-r1-select-3" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-r1-select-4" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-r1-select-5" class="custom-select custom-select-sm" data-show="1"></select>
+						</div>
+					</li>
+					<li id="sea-r2" class="list-group-item equip-item sea-r2" data-show="0" data-equipped="0">
+						<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="r2" data-offset="0"><div class="equip-border"></div></div></div>
+						<div class="equip-attributes-container d-inline-block">
+							<select id="sea-r2-select-1" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-r2-select-2" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-r2-select-3" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-r2-select-4" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-r2-select-5" class="custom-select custom-select-sm" data-show="1"></select>
+						</div>
+					</li>
+					<li id="sea-e" class="list-group-item equip-item sea-e" data-show="0" data-equipped="0">
+						<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="e" data-offset="0"><div class="equip-border"></div></div></div>
+						<div class="equip-attributes-container d-inline-block">
+							<select id="sea-e-select-1" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-e-select-2" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-e-select-3" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-e-select-4" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-e-select-5" class="custom-select custom-select-sm" data-show="1"></select>
+						</div>
+					</li>
+					<li id="sea-n" class="list-group-item equip-item sea-n" data-show="0" data-equipped="0">
+						<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="n" data-offset="0"><div class="equip-border"></div></div></div>
+						<div class="equip-attributes-container d-inline-block">
+							<select id="sea-n-select-1" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-n-select-2" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-n-select-3" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-n-select-4" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-n-select-5" class="custom-select custom-select-sm" data-show="1"></select>
+						</div>
+					</li>
+					<li id="sea-b" class="list-group-item equip-item sea-b" data-show="0" data-equipped="0">
+						<div class="equip-img-container d-inline-block"><div class="equip-list-img" data-rarity="c" data-type="b" data-offset="0"><div class="equip-border"></div></div></div>
+						<div class="equip-attributes-container d-inline-block">
+							<select id="sea-b-select-1" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-b-select-2" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-b-select-3" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-b-select-4" class="custom-select custom-select-sm" data-show="1"></select>
+							<select id="sea-b-select-5" class="custom-select custom-select-sm" data-show="1"></select>
+						</div>
+					</li>
+				</ul>
+			</div>
 			<br>
 		</section>
-		<section id="equiplist-section" class="col-md-12 col-lg-8 container mx-auto" data-equiplist="1">
+		<section id="equiplist-section" class="col-md-12 col-lg-8 container mx-auto" data-viewright="1">
+
 			<div id="equip-container" class="row container">
 				<ul id="equip-itemset-filter" class="col-12 list-inline" data-color="0">
 					<li id="eif-c" class="list-inline-item equip-itemset-filter">C</li>
