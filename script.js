@@ -450,6 +450,9 @@ function updateSetupStatElement() {
 		let statvalue = allstats[statKey]
 		let statValueElementID =  "setup-stat-"+statKey+"-value"
 		let valuetext = rtdstat[statKey].unit[0] + statvalue + rtdstat[statKey].unit[1]
+		if (rtdstat[statKey].hasOwnProperty("base") === true) {
+ 			valuetext = rtdstat[statKey].base + " " + valuetext
+		}
 		domdom.updateTextByID(statValueElementID, valuetext)
 		if (statvalue === 0) {
 			domdom.updateAttributeByID("setup-stat-"+statKey, "data-show", 0)
