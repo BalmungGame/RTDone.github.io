@@ -757,7 +757,7 @@ const rtdset = {
 	si023: {
 		setname:{en:"Necromancy Power"},
 		effects:{
-			s2: [["s012",70]],
+			s2: [["s012",20]],
 			s3: [["e078"]],
 			s4: [["e079",10.0]],
 			s5: [["e080"]]}},
