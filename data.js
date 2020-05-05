@@ -948,7 +948,10 @@ const rtdset = {
 	se131: {setname:{en:"Event Boots"},rarity:["z"]},
 	se132: {setname:{en:"Event Belt"},rarity:["z"]},
 	se133: {setname:{en:"Shard of Winter"},rarity:["z"]},
-	se134: {setname:{en:"Sleipnir"},rarity:["z"]},
+	se134: {
+		setname:{en:"Sleipnir"},
+		effects:{s2: [["s098",20]]},
+		rarity:["z"]},
 	se135: {setname:{en:"Goblin Belt"},rarity:["z"]},
 }
 
