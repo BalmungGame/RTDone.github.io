@@ -463,6 +463,10 @@ p.effect {
 	margin-bottom: 20px;
 }
 
+.setup-fixedattributes-fields > p {
+	border: none;
+}
+
 #setup-stat-s000,
 #setup-stat-s030,
 #setup-stat-s050,

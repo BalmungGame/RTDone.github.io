@@ -23,10 +23,18 @@ const rtdrarity = {
 	e: {name:{en:"Eternal"},color:{en:"<span class=\"rarity-e\">Eternal</span>"}, maxattr: 5},
 	m: {name:{en:"Mythic"},color:{en:"<span class=\"rarity-m\">Mythic</span>"}, maxattr: 5},
 	s: {name:{en:"Seasonal"},color:{en:"<span class=\"rarity-s\">Seasonal</span>"}},
-	s01: {name:{en:"Season 1"},color:{en:"<span class=\"rarity-s1\">Season 1</span>"}},
-	s02: {name:{en:"Season 2"},color:{en:"<span class=\"rarity-s2\">Season 2</span>"}},
-	s03: {name:{en:"Season 3"},color:{en:"<span class=\"rarity-s3\">Season 3</span>"}},
+	s01: {name:{en:"Season 1"},color:{en:"<span class=\"rarity-s1\">Season 1 (Void)</span>"}},
+	s02: {name:{en:"Season 2"},color:{en:"<span class=\"rarity-s2\">Season 2 (Frost)</span>"}},
+	s03: {name:{en:"Season 3"},color:{en:"<span class=\"rarity-s3\">Season 3 (TBD)</span>"}},
+	s04: {name:{en:"Season 4"},color:{en:"<span class=\"rarity-s4\">Season 4 (TBD)</span>"}},
+	s05: {name:{en:"Season 5"},color:{en:"<span class=\"rarity-s5\">Season 5 (TBD)</span>"}},
 	z: {name:{en:"Event"},color:{en:"<span class=\"rarity-z\">Event</span>"}},
+	skinn: {name:{en:"Normal"},color:{en:"<span class=\"rarity-skin-normal\">Normal</span>"}},
+	skinr: {name:{en:"Rare"},color:{en:"<span class=\"rarity-skin-rare\">Rare</span>"}},
+	skine: {name:{en:"Epic"},color:{en:"<span class=\"rarity-skin-\">Epic</span>"}},
+	skin: {name:{en:"Normal"},color:{en:"<span class=\"rarity-skin-\">Normal</span>"}},
+	skin: {name:{en:"Normal"},color:{en:"<span class=\"rarity-skin-\">Normal</span>"}},
+	skin: {name:{en:"Normal"},color:{en:"<span class=\"rarity-skin-\">Normal</span>"}},
 }
 
 const rtdstat = {
@@ -188,7 +196,7 @@ const rtdeffect = {
 		desc:{en:"Leech Effect is increased by <data value=\"#0#\">#0#.0%</data> for Basic Attacks."}},
 	e082: {
 		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Void Power (5 Set)"},
-		desc:{en:"<i class=\"sstat\">Your stats increase as companions fall in battle.</i>"}},
+		desc:{en:"<i class=\"sstat\">Your stats will increase when you equip less companions.</i>"}},
 	e083: {
 		rpe:{nodesc:0,en:"[Infernal Set Effect] Activate Skuld's Protector (3 Set)"},
 		desc:{en:"Movement Speed is increased for all Air-type companions by <data value=\"#0#\">#0#</data>"}},
@@ -229,6 +237,12 @@ const rtdeffect = {
 	e113: {desc:{en:"TEXT"}},
 	e114: {desc:{en:"TEXT"}},
 	e115: {desc:{en:"TEXT"}},
+	/*special/season*/
+	e901: {desc:{en:"<i class=\"sstat\">Soul shards</i> are obtained when attacking or defeating the enemy.<br><data value=\"#0#\">#0#%</data> of Penetration power and <data value=\"#1#\">#1#%</data> of Penetration Cap will increase per <data value=\"#2#\">#2#</data> Soul shards."}},
+	e902: {desc:{en:"Obtain a shield <data value=\"#0#\">#0#</data> ~ <data value=\"#1#\">#1#%</data> of the max health when damaged depending on the amount of <i class=\"sstat\">Soul shards</i>. Use <data value=\"#2#\">#2#%</data> of <i class=\"sstat\">Soul shards</i>.<br>(Cooldown <data value=\"#3#\">#3#</data> seconds)<br><data value=\"#4#\">#4#%</data> of Damage will reduce while the shield is activated."}},
+	e903: {desc:{en:"Critical damage rate will increase to <data value=\"#0#\">#0#</data> ~ <data value=\"#1#\">#1#%</data> by <data value=\"#2#\">#2#</data> ~ <data value=\"#3#\">#3#%</data> chance depending on the amount of <i class=\"sstat\">Soul shards</i>.<br>All <i class=\"sstat\">Soul shards</i> will disappear when owned to the max."}},
+	e904: {desc:{en:"Freeze nearby ground and enemies by <data value=\"#0#\">#0#%</data> chance.<br>(Cooldown <data value=\"#1#\">#1#</data> seconds)<br>The damaging period will shorten depending on the amount of <i class=\"sstat\">Soul shards</i> and will use <data value=\"#2#\">#2#%</data> of <i class=\"sstat\">Soul shards</i> when activated."}},
+	e905: {desc:{en:"Absorb <i class=\"sstat\">Soul shards</i> from companions every <data value=\"#0#\">#0#</data> seconds.<br>Obtain <data value=\"#1#\">#1#%</data> of current Critical damage and Critical rate <data value=\"#2#\">#2#%</data> for <data value=\"#3#\">#3#</data> seconds by using companions and <i class=\"sstat\">Soul shards</i> when owned to the max."}},
 }
 // for effect e007
 const rtdrandomeffect = {
@@ -373,6 +387,76 @@ const rtdrandomeffect = {
 		["s098",50],["s098",49],["s098",48],["s098",47],["s098",46],["s098",45],["s098",44],["s098",43],["s098",42],["s098",41],["s098",40],
 	],
 	e035b: [
+		/* +1/2 Set*/
+		["e005",2],["e005",1],
+		/*Eternal Set Effects*/
+		["e112",2.0,50.0],["e107",15,15],["e106",5,1],["e105"],["e104",300,20],["e103",3,5],["e102",5],["e101",1,15,2],
+		/*Infernal Set Effects*/
+		["e084",10],["e083",0.3],["e082"],["e081",2.0],["e080"],["e079",10.0],["e078"],["e077",3,5],["e076",50.0,10],["e075",25],["e074",1],["e073",20.0,500.0],["e072"],["e071"],
+		/*Holy Set Effects*/
+		["e044",25],["e043",1.0,500],["e042",1],["e041",150,40.0],
+		/*Stats*/
+		/*Attack*/
+		["s001",100],["s001",99],["s001",98],["s001",97],["s001",96],["s001",95],["s001",94],["s001",93],["s001",92],["s001",91],["s001",90],
+		["s001",89],["s001",88],["s001",87],["s001",86],["s001",85],["s001",84],["s001",83],["s001",82],["s001",81],["s001",80],
+		["s002",100],["s002",99],["s002",98],["s002",97],["s002",96],["s002",95],["s002",94],["s002",93],["s002",92],["s002",91],["s002",90],
+		["s002",89],["s002",88],["s002",87],["s002",86],["s002",85],["s002",84],["s002",83],["s002",82],["s002",81],["s002",80],
+		["s003",10],["s003",9],["s003",8],["s003",7],["s003",6],["s003",5],["s003",4],["s003",3],["s003",2],["s003",1],
+		["s005",20],["s005",19],["s005",18],["s005",17],["s005",16],
+		["s006",5],["s006",4],["s006",3],["s006",2],["s006",1],
+		["s007",100],["s007",99],["s007",98],["s007",97],["s007",96],["s007",95],["s007",94],["s007",93],["s007",92],["s007",91],["s007",90],
+		["s007",89],["s007",88],["s007",87],["s007",86],["s007",85],["s007",84],["s007",83],["s007",82],["s007",81],["s007",80],
+		["s008",50],["s008",49],["s008",48],["s008",47],["s008",46],["s008",45],["s008",44],["s008",43],["s008",42],["s008",41],["s008",40],
+		["s011",36],
+		["s012",20],["s012",19],["s012",18],["s012",17],["s012",16],
+		["s014",100],["s014",99],["s014",98],["s014",97],["s014",96],["s014",95],["s014",94],["s014",93],["s014",92],["s014",91],["s014",90],
+		/*skill dmg 67% on korean server*/
+		["s014",89],["s014",88],["s014",87],["s014",86],["s014",85],["s014",84],["s014",83],["s014",82],["s014",81],["s014",80],
+		["s015",50],["s015",49],["s015",48],["s015",47],["s015",46],["s015",45],["s015",44],["s015",43],["s015",42],["s015",41],["s015",40],
+		["s017",100],["s017",99],["s017",98],["s017",97],["s017",96],["s017",95],["s017",94],["s017",93],["s017",92],["s017",91],["s017",90],
+		["s017",89],["s017",88],["s017",87],["s017",86],["s017",85],["s017",84],["s017",83],["s017",82],["s017",81],["s017",80],
+		["s018",50],["s018",49],["s018",48],["s018",47],["s018",46],["s018",45],["s018",44],["s018",43],["s018",42],["s018",41],["s018",40],
+		/*Health*/
+		["s031",100],["s031",99],["s031",98],["s031",97],["s031",96],["s031",95],["s031",94],["s031",93],["s031",92],["s031",91],["s031",90],
+		["s031",89],["s031",88],["s031",87],["s031",86],["s031",85],["s031",84],["s031",83],["s031",82],["s031",81],["s031",80],
+		["s032",100],["s032",99],["s032",98],["s032",97],["s032",96],["s032",95],["s032",94],["s032",93],["s032",92],["s032",91],["s032",90],
+		["s032",89],["s032",88],["s032",87],["s032",86],["s032",85],["s032",84],["s032",83],["s032",82],["s032",81],["s032",80],
+		["s033",0.2],["s033",0.19],["s033",0.18],["s033",0.17],["s033",0.16],["s033",0.15],["s033",0.14],["s033",0.13],["s033",0.12],["s033",0.11],
+		["s034",1.4],["s034",1.39],["s034",1.38],["s034",1.37],["s034",1.36],["s034",1.35],["s034",1.34],["s034",1.33],["s034",1.32],["s034",1.31],
+		/*Defense*/
+		["s051",100],["s051",99],["s051",98],["s051",97],["s051",96],["s051",95],["s051",94],["s051",93],["s051",92],["s051",91],["s051",90],
+		["s051",89],["s051",88],["s051",87],["s051",86],["s051",85],["s051",84],["s051",83],["s051",82],["s051",81],["s051",80],
+		["s052",100],["s052",99],["s052",98],["s052",97],["s052",96],["s052",95],["s052",94],["s052",93],["s052",92],["s052",91],["s052",90],
+		["s052",89],["s052",88],["s052",87],["s052",86],["s052",85],["s052",84],["s052",83],["s052",82],["s052",81],["s052",80],
+		/*Resistance*/
+		["s078",30],["s078",29],["s078",28],["s078",27],["s078",26],
+		["s078",25],["s078",24],["s078",23],["s078",22],["s078",21],
+		["s078",20],["s078",19],["s078",18],["s078",17],["s078",16],
+		["s079",30],["s079",29],["s079",28],["s079",27],["s079",26],
+		["s079",25],["s079",24],["s079",23],["s079",22],["s079",21],
+		["s079",20],["s079",19],["s079",18],["s079",17],["s079",16],
+		/*Control*/
+		["s081",10],["s081",9],["s081",8],["s081",7],["s081",6],["s081",5],["s081",4],["s081",3],["s081",2],["s081",1],
+		["s082",10],["s082",9],["s082",8],["s082",7],["s082",6],["s082",5],["s082",4],["s082",3],["s082",2],["s082",1],
+		["s083",10],["s083",9],["s083",8],["s083",7],["s083",6],["s083",5],["s083",4],["s083",3],["s083",2],["s083",1],
+		["s084",10],["s084",9],["s084",8],["s084",7],["s084",6],["s084",5],["s084",4],["s084",3],["s084",2],["s084",1],
+		["s085",20],["s085",19],["s085",18],["s085",17],["s085",16],
+		["s086",20],["s086",19],["s086",18],["s086",17],["s086",16],
+		["s087",20],["s087",19],["s087",18],["s087",17],["s087",16],
+		["s088",20],["s088",19],["s088",18],["s088",17],["s088",16],
+		["s801",15],["s801",14],["s801",13],["s801",12],["s801",11],
+		["s802",5],["s802",4],["s802",3],["s802",2],["s802",1],
+		["s803",5],["s803",4],["s803",3],["s803",2],["s803",1],
+		["s804",5],["s804",4],["s804",3],["s804",2],["s804",1],
+		/*Other*/
+		["s092",100],["s092",99],["s092",98],["s092",97],["s092",96],["s092",95],["s092",94],["s092",93],["s092",92],["s092",91],["s092",90],
+		["s092",89],["s092",88],["s092",87],["s092",86],["s092",85],["s092",84],["s092",83],["s092",82],["s092",81],["s092",80],
+		["s093",5],["s093",4],["s093",3],["s093",2],["s093",1],
+		["s097",100],["s097",99],["s097",98],["s097",97],["s097",96],["s097",95],["s097",94],["s097",93],["s097",92],["s097",91],["s097",90],
+		["s097",89],["s097",88],["s097",87],["s097",86],["s097",85],["s097",84],["s097",83],["s097",82],["s097",81],["s097",80],
+		["s098",50],["s098",49],["s098",48],["s098",47],["s098",46],["s098",45],["s098",44],["s098",43],["s098",42],["s098",41],["s098",40],
+	],
+	e036r1: [
 		/* +1/2 Set*/
 		["e005",2],["e005",1],
 		/*Eternal Set Effects*/
@@ -907,6 +991,7 @@ const rtdset = {
 		setname:{en:"Abyssal Helm/Armor"},
 		effects:{
 			s2: [["e108",50.0,40.0],["e005",1]],
+			s3: [["s017",100]],
 			s4: [["s001",100],["s011",100]]},
 		rarity:["s","s01"]},
 	se025: {
@@ -930,6 +1015,36 @@ const rtdset = {
 			s3: [["e111",20.0,4.0,5]],
 			s4: [["s017",200],["s004",10]]},
 		rarity:["s","s01"]},
+	se030: {
+		setname:{en:"Prison of Catella's Soul"},
+		rarity:["s","s01"]},
+	se031: {
+		setname:{en:"Sharpened Frost"},
+		effects:{
+			s2: [["e902",50,150,50,90,30],["s072",25]],
+			s3: [["s031",100]],},
+		rarity:["s","s02"]},
+	se032: {
+		setname:{en:"Frost Melee"},
+		effects:{
+			s2: [["e903",50,70,50,100,15],["s072",15]],
+			s3: [["s017",150]],
+			s4: [["s001",100]],},
+		rarity:["s","s02"]},
+	se033: {
+		setname:{en:"Frost Ranged"},
+		effects:{
+			s2: [["e904",30,25,30],["s072",15]],
+			s3: [["s017",150]],
+			s4: [["s001",100]],},
+		rarity:["s","s02"]},
+	se034: {
+		setname:{en:"Frost Staff"},
+		effects:{
+			s2: [["e905",2,70.0,80.0,15],["s072",15]],
+			s3: [["s017",150]],
+			s4: [["s001",100]],},
+		rarity:["s","s02"]},
 	se029: {
 		setname:{en:"The End of a Myth"},
 		effects:{
@@ -953,6 +1068,7 @@ const rtdset = {
 		effects:{s2: [["s098",20]]},
 		rarity:["z"]},
 	se135: {setname:{en:"Goblin Belt"},rarity:["z"]},
+	se136: {setname:{en:"Behemoth's Eye"},rarity:["z"]},
 }
 
 const rtdequip = {
@@ -1314,7 +1430,9 @@ const rtdequip = {
 	e033r1: {setid: "se133", name:{en:"Shard of Winter"}, pos:9, effects:[["e007",2]], apid:"ap409"},
 	e034f: {setid: "se134", name:{en:"Sleipnir"}, pos:9, effects:[["s091",0.2]], apid:"ap406"},
 	e035b: {setid: "se135", name:{en:"Goblin King's Ring Belt"}, pos:9, effects:[["e007",1],["s013",10]], apid:"ap410"},
+	e036r1: {setid: "se136", name:{en:"Behemoth's Eye"}, pos:10, effects:[["e007",1],["s017",100]], apid:"ap409"},
 	/* Season Items */
+	/* Season 1 : Void Rift (feb-july 13th 2020) */
 	e100h: {setid: "se024", name:{en:"Abyssal Eyes"}, pos:7, apid:"ap404"},
 	e100c: {setid: "se024", name:{en:"Abyssal Heart"}, pos:7, apid:"ap405"},
 
@@ -1326,6 +1444,20 @@ const rtdequip = {
 
 	e103w: {setid: "se027", name:{en:"Watcher of Void"}, class:3, pos:9, apid:"ap401"},
 	e103o: {setid: "se027", name:{en:"Shadow of Watcher"}, class:3, pos:9, apid:"ap403"},
+	/* Season 2 : Frost Rift (july 14th 2020 - present) */
+	e110r1: {setid: "se030", name:{en:"Prison of Catella's Soul"}, pos:11, effects:[["e901",2,1,10]], apid:"ap409"},
+
+	e111h: {setid: "se031", name:{en:"Sharpened Frost Helmet"}, pos:11, apid:"ap404"},
+	e111c: {setid: "se031", name:{en:"Sharpened Frost Armor"}, pos:11, apid:"ap405"},
+
+	e112w: {setid: "se032", name:{en:"Sealed Dragon's Bone"}, class:1, pos:11, apid:"ap401"},
+	e112o: {setid: "se032", name:{en:"Sealed Dragon's Soul"}, class:1, pos:11, effects:[["s057",20]], apid:"ap403"},
+
+	e113w: {setid: "se033", name:{en:"North Wind"}, class:2, pos:12, apid:"ap401"},
+	e113o: {setid: "se033", name:{en:"Freezing Cold"}, class:2, pos:12, apid:"ap403"},
+
+	e114w: {setid: "se034", name:{en:"Scepter of Domination"}, class:3, pos:13, apid:"ap401"},
+	e114o: {setid: "se034", name:{en:"Crystal of Exploitation"}, class:3, pos:13, apid:"ap403"},
 }
 
 
@@ -1442,4 +1574,44 @@ const rtdattributepools = {
 	// eternal belt
 	ap410 : [["s051",4,10],["s031",6,10],["s014",6,10],["s097",14,20],["s098",21,27],["s099",22,28],["s034",0.1,1],["s011",6,10]],
 
+}
+
+const rtdskinset = {
+	/*normal sets*/
+	sn000: {
+		setname:{en:"SETNAME"},
+		realset:false,},
+	sn001: {
+		setname:{en:"Julius Ceasar"},
+		realset:false,},
+	sn002: {
+		setname:{en:"Knightage"},
+		realset:false,},
+	sn003: {
+		setname:{en:"Striker"},
+		realset:false,},
+	sn004: {
+		setname:{en:"Griffin"},
+		realset:false,},
+	sn005: {
+		setname:{en:"God"},
+		realset:false,},
+	sn006: {
+		setname:{en:"Conquest"},
+		realset:false,},
+	sn007: {
+		setname:{en:"Maximilian"},
+		realset:false,},
+	sn008: {
+		setname:{en:"Dark"},
+		realset:false,},
+	sr001: {
+		setname:{en:"SETNAME"},
+		realset:false,},
+	sr002: {
+		setname:{en:"SETNAME"},
+		realset:false,},
+	sr003: {
+		setname:{en:"SETNAME"},
+		realset:false,},
 }

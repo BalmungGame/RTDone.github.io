@@ -140,6 +140,8 @@ const elementTemplates = {
 	setupOptionSelectedEffect : domdom.eleByID("rpe-option-selected-effect-tmp"),
 	setupOptionSelectedEffectPrefix : "rpe-option-selected-effect-",
 
+	setupFixedAttribute : domdom.eleByID("rpe-fixed-attribute-tmp"),
+
 	// setup stats
 	setupStat : domdom.eleByID("setup-stat-tmp"),
 	setupStatPrefix : "setup-stat-",
@@ -800,6 +802,7 @@ function addRandomAttributeElement(slot, equipKey) {
 
 	domdom.updateAttributeBySelector("#"+newRAElementID+" .setup-randomattributes-equipname", "id", newRAElementID+"-equipname")
 	domdom.updateAttributeBySelector("#"+newRAElementID+" .setup-randomattributes-fields", "id", newRAElementID+"-fields")
+	domdom.updateAttributeBySelector("#"+newRAElementID+" .setup-fixedattributes-fields", "id", newRAElementID+"-fixed-fields")
 
 	// setname
 	let newElementEquipName = rtdequip[equipKey].name[settings.lang]
@@ -903,6 +906,33 @@ function addRandomAttributeElement(slot, equipKey) {
 					calcSetupSet()
 				});
 			}
+		} else {
+			let itemEffectData = equipEffects[raee_i]
+			let itemEffectDataKey = itemEffectData[0]
+			
+			let fixedAttributeElement = domdom.newEleFromModel(elementTemplates.setupFixedAttribute)
+			let attributeElementID = "equipped-" + elementTemplates.fixedAttributePrefix + equipKey + "-" + itemEffectDataKey
+			fixedAttributeElement.id = attributeElementID
+			let attributeContainerSelector = "#"+newRAElementID+" .setup-fixedattributes-fields"
+
+			domdom.eleByID(newRAElementID+"-fixed-fields").appendChild(fixedAttributeElement)
+			
+			let attributeText = ""
+
+			if (itemEffectDataKey.slice(0,1) == "s") {
+				// its a basic stat
+				attributeText = rtdstat[itemEffectDataKey].name[settings.lang] + " " + rtdstat[itemEffectDataKey].unit[0] + itemEffectData[1] + rtdstat[itemEffectDataKey].unit[1]
+			} else if (itemEffectDataKey.slice(0,1) == "e") {
+				// s effect
+				let copyItemEffectData = [...itemEffectData]
+				copyItemEffectData.shift()
+				attributeText = txt(rtdeffect[itemEffectDataKey].desc[settings.lang], copyItemEffectData)
+
+			}
+
+			domdom.updateTextByID(attributeElementID, attributeText)
+			domdom.updateAttributeByID(attributeElementID, "data-show", 1)
+
 		}
 	}
 
@@ -1203,11 +1233,14 @@ function refreshSetupRandElements() {
 			let equipKey = settings.build[slotKey].k
 			if (rtdequip[equipKey].hasOwnProperty("effects") === true) {
 				let equipEffects = [...rtdequip[equipKey].effects]
-				for (let sree_i = 0; sree_i < equipEffects.length; sree_i++) {
+				/*for (let sree_i = 0; sree_i < equipEffects.length; sree_i++) {
 					let setupRandEquipEffect = equipEffects[sree_i]
 					if (["e007"].indexOf(setupRandEquipEffect[0]) !== -1) {
 						addRandomAttributeElement(slotKey, equipKey)
 					}
+				}*/
+				if (equipEffects.length > 0) {
+					addRandomAttributeElement(slotKey, equipKey)
 				}
 			}
 		}
