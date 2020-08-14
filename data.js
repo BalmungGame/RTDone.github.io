@@ -240,7 +240,7 @@ const rtdeffect = {
 	/*special/season*/
 	e901: {desc:{en:"<i class=\"sstat\">Soul shards</i> are obtained when attacking or defeating the enemy.<br><data value=\"#0#\">#0#%</data> of Penetration power and <data value=\"#1#\">#1#%</data> of Penetration Cap will increase per <data value=\"#2#\">#2#</data> Soul shards."}},
 	e902: {desc:{en:"Obtain a shield <data value=\"#0#\">#0#</data> ~ <data value=\"#1#\">#1#%</data> of the max health when damaged depending on the amount of <i class=\"sstat\">Soul shards</i>. Use <data value=\"#2#\">#2#%</data> of <i class=\"sstat\">Soul shards</i>.<br>(Cooldown <data value=\"#3#\">#3#</data> seconds)<br><data value=\"#4#\">#4#%</data> of Damage will reduce while the shield is activated."}},
-	e903: {desc:{en:"Critical damage rate will increase to <data value=\"#0#\">#0#</data> ~ <data value=\"#1#\">#1#%</data> by <data value=\"#2#\">#2#</data> ~ <data value=\"#3#\">#3#%</data> chance depending on the amount of <i class=\"sstat\">Soul shards</i>.<br>All <i class=\"sstat\">Soul shards</i> will disappear when owned to the max."}},
+	e903: {desc:{en:"Critical damage rate will increase to <data value=\"#0#\">#0#</data> ~ <data value=\"#1#\">#1#%</data> by <data value=\"#2#\">#2#</data> ~ <data value=\"#3#\">#3#%</data> chance depending on the amount of <i class=\"sstat\">Soul shards</i>.<br>The max amount of <i class=\"sstat\">Soul shards</i> will increase by <data value=\"#4#\">#4#%</data>, but will all disappear when owned to the max."}},
 	e904: {desc:{en:"Freeze nearby ground and enemies by <data value=\"#0#\">#0#%</data> chance.<br>(Cooldown <data value=\"#1#\">#1#</data> seconds)<br>The damaging period will shorten depending on the amount of <i class=\"sstat\">Soul shards</i> and will use <data value=\"#2#\">#2#%</data> of <i class=\"sstat\">Soul shards</i> when activated."}},
 	e905: {desc:{en:"Absorb <i class=\"sstat\">Soul shards</i> from companions every <data value=\"#0#\">#0#</data> seconds.<br>Obtain <data value=\"#1#\">#1#%</data> of current Critical damage and Critical rate <data value=\"#2#\">#2#%</data> for <data value=\"#3#\">#3#</data> seconds by using companions and <i class=\"sstat\">Soul shards</i> when owned to the max."}},
 }
@@ -262,6 +262,7 @@ const rtdrandomeffect = {
 		["s002",100],["s002",99],["s002",98],["s002",97],["s002",96],["s002",95],["s002",94],["s002",93],["s002",92],["s002",91],["s002",90],
 		["s002",89],["s002",88],["s002",87],["s002",86],["s002",85],["s002",84],["s002",83],["s002",82],["s002",81],["s002",80],
 		["s003",10],["s003",9],["s003",8],["s003",7],["s003",6],["s003",5],["s003",4],["s003",3],["s003",2],["s003",1],
+		["s004",5],["s004",4],["s004",3],["s004",2],["s004",1],
 		["s005",20],["s005",19],["s005",18],["s005",17],["s005",16],
 		["s006",5],["s006",4],["s006",3],["s006",2],["s006",1],
 		["s007",100],["s007",99],["s007",98],["s007",97],["s007",96],["s007",95],["s007",94],["s007",93],["s007",92],["s007",91],["s007",90],
@@ -332,6 +333,7 @@ const rtdrandomeffect = {
 		["s002",100],["s002",99],["s002",98],["s002",97],["s002",96],["s002",95],["s002",94],["s002",93],["s002",92],["s002",91],["s002",90],
 		["s002",89],["s002",88],["s002",87],["s002",86],["s002",85],["s002",84],["s002",83],["s002",82],["s002",81],["s002",80],
 		["s003",10],["s003",9],["s003",8],["s003",7],["s003",6],["s003",5],["s003",4],["s003",3],["s003",2],["s003",1],
+		["s004",5],["s004",4],["s004",3],["s004",2],["s004",1],
 		["s005",20],["s005",19],["s005",18],["s005",17],["s005",16],
 		["s006",5],["s006",4],["s006",3],["s006",2],["s006",1],
 		["s007",100],["s007",99],["s007",98],["s007",97],["s007",96],["s007",95],["s007",94],["s007",93],["s007",92],["s007",91],["s007",90],
@@ -402,6 +404,7 @@ const rtdrandomeffect = {
 		["s002",100],["s002",99],["s002",98],["s002",97],["s002",96],["s002",95],["s002",94],["s002",93],["s002",92],["s002",91],["s002",90],
 		["s002",89],["s002",88],["s002",87],["s002",86],["s002",85],["s002",84],["s002",83],["s002",82],["s002",81],["s002",80],
 		["s003",10],["s003",9],["s003",8],["s003",7],["s003",6],["s003",5],["s003",4],["s003",3],["s003",2],["s003",1],
+		["s004",5],["s004",4],["s004",3],["s004",2],["s004",1],
 		["s005",20],["s005",19],["s005",18],["s005",17],["s005",16],
 		["s006",5],["s006",4],["s006",3],["s006",2],["s006",1],
 		["s007",100],["s007",99],["s007",98],["s007",97],["s007",96],["s007",95],["s007",94],["s007",93],["s007",92],["s007",91],["s007",90],
@@ -472,6 +475,7 @@ const rtdrandomeffect = {
 		["s002",100],["s002",99],["s002",98],["s002",97],["s002",96],["s002",95],["s002",94],["s002",93],["s002",92],["s002",91],["s002",90],
 		["s002",89],["s002",88],["s002",87],["s002",86],["s002",85],["s002",84],["s002",83],["s002",82],["s002",81],["s002",80],
 		["s003",10],["s003",9],["s003",8],["s003",7],["s003",6],["s003",5],["s003",4],["s003",3],["s003",2],["s003",1],
+		["s004",5],["s004",4],["s004",3],["s004",2],["s004",1],
 		["s005",20],["s005",19],["s005",18],["s005",17],["s005",16],
 		["s006",5],["s006",4],["s006",3],["s006",2],["s006",1],
 		["s007",100],["s007",99],["s007",98],["s007",97],["s007",96],["s007",95],["s007",94],["s007",93],["s007",92],["s007",91],["s007",90],
@@ -1027,14 +1031,14 @@ const rtdset = {
 	se032: {
 		setname:{en:"Frost Melee"},
 		effects:{
-			s2: [["e903",50,70,50,100,15],["s072",15]],
+			s2: [["e903",50,150,50,100,100],["s072",15]],
 			s3: [["s017",150]],
 			s4: [["s001",100]],},
 		rarity:["s","s02"]},
 	se033: {
 		setname:{en:"Frost Ranged"},
 		effects:{
-			s2: [["e904",30,25,30],["s072",15]],
+			s2: [["e904",30,10,50],["s072",15]],
 			s3: [["s017",150]],
 			s4: [["s001",100]],},
 		rarity:["s","s02"]},
@@ -1445,7 +1449,7 @@ const rtdequip = {
 	e103w: {setid: "se027", name:{en:"Watcher of Void"}, class:3, pos:9, apid:"ap401"},
 	e103o: {setid: "se027", name:{en:"Shadow of Watcher"}, class:3, pos:9, apid:"ap403"},
 	/* Season 2 : Frost Rift (july 14th 2020 - present) */
-	e110r1: {setid: "se030", name:{en:"Prison of Catella's Soul"}, pos:11, effects:[["e901",2,1,10]], apid:"ap409"},
+	e110r1: {setid: "se030", name:{en:"Prison of Catella's Soul"}, pos:11, effects:[["e901",5,1,20]], apid:"ap409"},
 
 	e111h: {setid: "se031", name:{en:"Sharpened Frost Helmet"}, pos:11, apid:"ap404"},
 	e111c: {setid: "se031", name:{en:"Sharpened Frost Armor"}, pos:11, apid:"ap405"},
