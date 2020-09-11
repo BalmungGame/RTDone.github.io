@@ -1116,20 +1116,20 @@ const rtdequip = {
 	l016h: {setid: "sl016", name:{en:"Crimson Hat"}, pos:3, apid:"ap104"},
 	l016c: {setid: "sl016", name:{en:"Crimson Robe"}, pos:3, apid:"ap105"},
 
-	l017w: {setid: "sl017", name:{en:"Zweihander"}, class:1, pos:0, apid:"ap101"},
-	l017o: {setid: "sl017", name:{en:"Ram Shield"}, class:1, pos:0, effects:[["s057",20]], apid:"ap103"},
-	l017h: {setid: "sl017", name:{en:"Assault Helmet"}, pos:0, apid:"ap104"},
-	l017c: {setid: "sl017", name:{en:"Assault Breastplate"}, pos:0, apid:"ap105"},
+	l017w: {setid: "sl017", name:{en:"Zweihander"}, class:1, pos:5, apid:"ap101"},
+	l017o: {setid: "sl017", name:{en:"Ram Shield"}, class:1, pos:5, effects:[["s057",20]], apid:"ap103"},
+	l017h: {setid: "sl017", name:{en:"Assault Helmet"}, pos:5, apid:"ap104"},
+	l017c: {setid: "sl017", name:{en:"Assault Breastplate"}, pos:5, apid:"ap105"},
 
 	l018w: {setid: "sl018", name:{en:"Archwing Seal"}, class:3, pos:3, apid:"ap102"},
 	l018o: {setid: "sl018", name:{en:"Royal Grimoire"}, class:3, pos:3, apid:"ap103"},
 	l018h: {setid: "sl018", name:{en:"Royal Hat"}, pos:3, apid:"ap104"},
 	l018c: {setid: "sl018", name:{en:"Royal Robe"}, pos:3, apid:"ap105"},
 
-	l019w: {setid: "sl019", name:{en:"Roman Shortsword"}, class:1, pos:0, apid:"ap101"},
-	l019o: {setid: "sl019", name:{en:"Royal Defender"}, class:1, pos:0, effects:[["s057",20]], apid:"ap103"},
-	l019h: {setid: "sl019", name:{en:"Royal Helmet"}, pos:0, apid:"ap104"},
-	l019c: {setid: "sl019", name:{en:"Royal Armor"}, pos:0, apid:"ap105"},
+	l019w: {setid: "sl019", name:{en:"Roman Shortsword"}, class:1, pos:7, apid:"ap101"},
+	l019o: {setid: "sl019", name:{en:"Royal Defender"}, class:1, pos:7, effects:[["s057",20]], apid:"ap103"},
+	l019h: {setid: "sl019", name:{en:"Royal Helmet"}, pos:7, apid:"ap104"},
+	l019c: {setid: "sl019", name:{en:"Royal Armor"}, pos:7, apid:"ap105"},
 
 	l020w: {setid: "sl020", name:{en:"Garand Rift"}, class:2, pos:3, apid:"ap102"},
 	l020o: {setid: "sl020", name:{en:"Obsidian Pellet Bag"}, class:2, pos:3, apid:"ap103"},
