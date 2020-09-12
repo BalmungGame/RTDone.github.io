@@ -151,7 +151,7 @@ const rtdeffect = {
 		desc:{en:"Warrior's Attack is increased by <data value=\"#0#\">#0#%</data> when his HP drops below <data value=\"#1#\">#1#%</data>."}},
 	e042: {
 		rpe:{nodesc:0,en:"[Holy Set Effect] Activate Hand of Death"},
-		desc:{en:"<data value=\"#0#\">#0#%</data> chance of inflicting immediate death to poisoned enemies <i class=\"sstat\">(Deals huge damage to the boss)</i>."}},
+		desc:{en:"<data value=\"#0#\">#0#%</data> chance of inflicting immediate death to poisoned enemies <i class=\"sstat\">(Deals huge damage [<data value=\"#1#\">#1#%</data> currenth health] to the boss)</i>."}},
 	e043: {
 		rpe:{nodesc:0,en:"[Holy Set Effect] Activate Will of Yggdrasil"},
 		desc:{en:"When the Warrior's Health drops to 0, it returns immediately to 30% along with a 10-sec recovery effect and a protective shelle that lasts for <data value=\"#0#\">#0#.0</data> sec (<data value=\"#1#\">#1#%</data> sec Cooldown)."}},
@@ -254,7 +254,7 @@ const rtdrandomeffect = {
 		/*Infernal Set Effects*/
 		["e084",10],["e083",0.3],["e082"],["e081",2.0],["e080"],["e079",10.0],["e078"],["e077",3,5],["e076",50.0,10],["e075",25],["e074",1],["e073",20.0,500.0],["e072"],["e071"],
 		/*Holy Set Effects*/
-		["e044",25],["e043",1.0,500],["e042",1],["e041",150,40.0],
+		["e044",25],["e043",1.0,500],["e042",5,0.2],["e041",150,40.0],
 		/*Stats*/
 		/*Attack*/
 		["s001",100],["s001",99],["s001",98],["s001",97],["s001",96],["s001",95],["s001",94],["s001",93],["s001",92],["s001",91],["s001",90],
@@ -325,7 +325,7 @@ const rtdrandomeffect = {
 		/*Infernal Set Effects*/
 		["e084",10],["e083",0.3],["e082"],["e081",2.0],["e080"],["e079",10.0],["e078"],["e077",3,5],["e076",50.0,10],["e075",25],["e074",1],["e073",20.0,500.0],["e072"],["e071"],
 		/*Holy Set Effects*/
-		["e044",25],["e043",1.0,500],["e042",1],["e041",150,40.0],
+		["e044",25],["e043",1.0,500],["e042",5,0.2],["e041",150,40.0],
 		/*Stats*/
 		/*Attack*/
 		["s001",100],["s001",99],["s001",98],["s001",97],["s001",96],["s001",95],["s001",94],["s001",93],["s001",92],["s001",91],["s001",90],
@@ -396,7 +396,7 @@ const rtdrandomeffect = {
 		/*Infernal Set Effects*/
 		["e084",10],["e083",0.3],["e082"],["e081",2.0],["e080"],["e079",10.0],["e078"],["e077",3,5],["e076",50.0,10],["e075",25],["e074",1],["e073",20.0,500.0],["e072"],["e071"],
 		/*Holy Set Effects*/
-		["e044",25],["e043",1.0,500],["e042",1],["e041",150,40.0],
+		["e044",25],["e043",1.0,500],["e042",5,0.2],["e041",150,40.0],
 		/*Stats*/
 		/*Attack*/
 		["s001",100],["s001",99],["s001",98],["s001",97],["s001",96],["s001",95],["s001",94],["s001",93],["s001",92],["s001",91],["s001",90],
@@ -467,7 +467,7 @@ const rtdrandomeffect = {
 		/*Infernal Set Effects*/
 		["e084",10],["e083",0.3],["e082"],["e081",2.0],["e080"],["e079",10.0],["e078"],["e077",3,5],["e076",50.0,10],["e075",25],["e074",1],["e073",20.0,500.0],["e072"],["e071"],
 		/*Holy Set Effects*/
-		["e044",25],["e043",1.0,500],["e042",1],["e041",150,40.0],
+		["e044",25],["e043",1.0,500],["e042",5,0.2],["e041",150,40.0],
 		/*Stats*/
 		/*Attack*/
 		["s001",100],["s001",99],["s001",98],["s001",97],["s001",96],["s001",95],["s001",94],["s001",93],["s001",92],["s001",91],["s001",90],
@@ -751,7 +751,7 @@ const rtdset = {
 		effects:{
 			s2: [["s014",12]],
 			s3: [["s017",75]],
-			s4: [["e042",1]],
+			s4: [["e042",5,0.2]],
 			s5: [["s031",45]]}},
 	sh031: {
 		setname:{en:"Emperor's Treasure"},
